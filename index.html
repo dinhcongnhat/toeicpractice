@@ -119,11 +119,6 @@
             border-color: #f87171 !important;
             color: #b91c1c !important;
         }
-        #timer-container {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
         .flag-btn {
             color: #9ca3af; /* gray-400 */
             transition: color 0.2s;
@@ -138,24 +133,27 @@
 </head>
 <body class="text-gray-800">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-7xl relative">
-        <!-- Personal Logo -->
-        <div class="absolute top-4 left-4 md:top-8 md:left-8">
-            <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/503219223_3921023044826501_1753354803024047833_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEjQyJYRo-w1xA6MZdYSPOtG9vEjyMiLHob28SPIyIseh-EDYBUEs-DzKY0I6sR16SlEyQ4w8k6fKDgo2BtYEY-&_nc_ohc=seTBxLXz-eMQ7kNvwGCxEbO&_nc_oc=AdnZUTs-ezawl1-j7yrFUmcexPjIjYX5neS8lS4RMOf_KmO3HPex_RMQOpN9V_R02ks&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=nGPqrOoqxEq8cdvB-VpixQ&oh=00_AfQ8Q4nPmnGKuHnoJ46pSXSM0XGEVbaGmra5OvUvY0EL8Q&oe=68818F43" alt="Personal Logo" class="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover shadow-md">
+    <div class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto p-4 max-w-7xl flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/503219223_3921023044826501_1753354803024047833_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEjQyJYRo-w1xA6MZdYSPOtG9vEjyMiLHob28SPIyIseh-EDYBUEs-DzKY0I6sR16SlEyQ4w8k6fKDgo2BtYEY-&_nc_ohc=seTBxLXz-eMQ7kNvwGCxEbO&_nc_oc=AdnZUTs-ezawl1-j7yrFUmcexPjIjYX5neS8lS4RMOf_KmO3HPex_RMQOpN9V_R02ks&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=nGPqrOoqxEq8cdvB-VpixQ&oh=00_AfQ8Q4nPmnGKuHnoJ46pSXSM0XGEVbaGmra5OvUvY0EL8Q&oe=68818F43" alt="Personal Logo" class="w-14 h-14 rounded-full object-cover">
+                <div class="font-bold text-xl" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+                    <span class="text-blue-600">TOEIC</span><span class="text-red-600"> ONE</span>
+                </div>
+            </div>
+            <div id="timer-component" class="text-right">
+                <h2 class="text-md font-semibold text-gray-700">Thời gian còn lại</h2>
+                <div id="timer" class="text-2xl font-bold text-red-600">120:00</div>
+            </div>
         </div>
+    </div>
 
-        <header class="text-center mb-8 pt-16 md:pt-0">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <header class="text-center my-8">
             <h1 class="text-3xl md:text-4xl font-bold text-blue-600">TOEIC EXAMINATION - ETS 2019 TEST 3</h1>
             <p class="text-green-500 mt-1">GOOD LUCK🍀</p>
         </header>
 
-        <!-- Timer -->
-        <div id="timer-container" class="bg-white p-4 rounded-lg shadow-md mb-6 text-center">
-             <h2 class="text-xl font-bold text-gray-700">Thời gian còn lại</h2>
-             <div id="timer" class="text-4xl font-bold text-red-600 mt-2">120:00</div>
-        </div>
-
-        <!-- Audio Player -->
         <div class="audio-player-container bg-white p-4 rounded-lg shadow-md mb-6">
             <h2 class="text-xl font-bold text-center text-gray-700">Listening Section Audio</h2>
             <audio id="audio-player" controls src="https://cloud.jtscpro.top/index.php/s/4yLH9a8KBCgWyzE/download">
@@ -168,7 +166,6 @@
             <p>Bạn không thể thay đổi đáp án cho Part 1, 2, 3, và 4.</p>
         </div>
 
-        <!-- Tabs Navigation -->
         <div class="tabs-container overflow-x-auto pb-3 mb-6 border-b border-gray-300">
             <div id="tabs" class="flex space-x-2 md:space-x-4">
                 <button class="tab-btn active py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part1')">Part 1</button>
@@ -183,7 +180,6 @@
         </div>
 
         <main id="quiz-container">
-            <!-- Tab Content -->
             <div id="part1" class="tab-content active"><div class="part-score-display"></div></div>
             <div id="part2" class="tab-content"><div class="part-score-display"></div></div>
             <div id="part3" class="tab-content"><div class="part-score-display"></div></div>
@@ -194,10 +190,8 @@
             <div id="answerSheet" class="tab-content"></div>
         </main>
         
-        <!-- Results and Submit Button -->
         <div id="results-container" class="text-center mt-8 p-6 bg-white rounded-lg shadow-lg hidden">
-            <!-- Detailed results will be injected here -->
-        </div>
+            </div>
 
         <div class="text-center mt-8">
             <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-12 rounded-lg shadow-md transition-transform transform hover:scale-105">
@@ -206,7 +200,6 @@
         </div>
     </div>
 
-    <!-- Confirmation Modal -->
     <div id="confirmation-modal" class="modal-overlay">
         <div class="modal-content">
             <h3 class="text-xl font-bold mb-4">Xác nhận nộp bài</h3>
@@ -580,13 +573,24 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         if (part) {
             changeTab(part);
             setTimeout(() => {
-                const element = document.getElementById(`q-${questionId}`) || document.getElementById(`q-${questionId}`).closest('.conversation-group, .passage-container-wrapper');
+                // For grouped questions, find the group wrapper. For others, find the question block.
+                const groupWrapper = document.getElementById(`q-${questionId}`)?.closest('.conversation-group, .passage-container-wrapper');
+                const element = groupWrapper || document.getElementById(`q-${questionId}`);
+
                 if (element) {
-                    // For grouped questions, we need to show the parent container
-                    if (element.classList.contains('conversation-group') && element.classList.contains('hidden')) {
-                        document.querySelectorAll(`.${part} .conversation-group`).forEach(el => el.classList.add('hidden'));
+                    // Only apply hide/show logic for listening parts (1-4)
+                    if (['part1', 'part2', 'part3', 'part4'].includes(part)) {
+                        const partContainer = document.getElementById(part);
+                        // Hide all sibling question/group blocks within the same part
+                        Array.from(partContainer.children).forEach(child => {
+                            if (child.id && (child.id.startsWith('q-') || child.id.startsWith('group-'))) {
+                                child.classList.add('hidden');
+                            }
+                        });
                         element.classList.remove('hidden');
                     }
+
+                    // Scroll into view for all parts
                     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     element.classList.add('ring-2', 'ring-blue-500', 'ring-offset-2');
                     setTimeout(() => element.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-2'), 2000);
@@ -730,9 +734,11 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         passageContainer.className = 'passage-container-wrapper bg-white shadow-md rounded-lg p-6 mb-6 grid grid-cols-1 md:grid-cols-2 gap-8';
         passageContainer.id = `group-${part}-${index}`;
         passageContainer.dataset.questions = pData.questions.map(q => q.id).join(',');
-        if (index > 0) {
-            passageContainer.classList.add('hidden');
-        }
+        
+        // This logic is now handled in generateQuiz
+        // if (index > 0) {
+        //     passageContainer.classList.add('hidden');
+        // }
 
         const leftCol = document.createElement('div');
         leftCol.className = 'scrollable-column max-h-[85vh] overflow-y-auto pr-4';
@@ -769,9 +775,11 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         passageContainer.className = 'conversation-group bg-white shadow-md rounded-lg p-6 mb-6';
         passageContainer.id = `group-${part}-${index}`;
         passageContainer.dataset.questions = pData.questions.map(q => q.id).join(',');
-        if (index > 0) {
-            passageContainer.classList.add('hidden');
-        }
+        
+        // This logic is now handled in generateQuiz
+        // if (index > 0) {
+        //    passageContainer.classList.add('hidden');
+        // }
         
         const audioNote = document.createElement('div');
         audioNote.className = 'audio-placeholder text-base mb-4';
@@ -804,7 +812,7 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
                 currentElement.classList.add('hidden');
                 nextElement.classList.remove('hidden');
                 nextElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 2000);
+            }, 1000);
         }
     }
 
@@ -824,15 +832,19 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
 
         const questionElement = document.getElementById(`q-${questionId}`);
         const parentGroup = questionElement.closest('.conversation-group, .passage-container-wrapper');
+        const part = questionPartMapping[questionId];
 
-        if (parentGroup) { // It's a grouped question (Part 3, 4, 6, 7)
-            const questionIdsInGroup = parentGroup.dataset.questions.split(',').map(Number);
-            const allAnswered = questionIdsInGroup.every(id => userAnswers.hasOwnProperty(id));
-            if (allAnswered) {
-                autoAdvance(parentGroup.id);
+        // *** MODIFIED: Only auto-advance for listening parts ***
+        if (['part1', 'part2', 'part3', 'part4'].includes(part)) {
+            if (parentGroup) { // It's a grouped question (Part 3, 4)
+                const questionIdsInGroup = parentGroup.dataset.questions.split(',').map(Number);
+                const allAnswered = questionIdsInGroup.every(id => userAnswers.hasOwnProperty(id));
+                if (allAnswered) {
+                    autoAdvance(parentGroup.id);
+                }
+            } else { // It's a single question (Part 1, 2)
+                autoAdvance(questionElement.id);
             }
-        } else { // It's a single question (Part 1, 2, 5)
-            autoAdvance(questionElement.id);
         }
     }
 
@@ -854,6 +866,8 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     }
 
     function generateQuiz() {
+        const listeningParts = ['part1', 'part2', 'part3', 'part4'];
+        
         for (const part in quizData) {
             const container = document.getElementById(part);
             if (!container) continue;
@@ -861,21 +875,27 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
                 let block;
                 if (item.questions) {
                      item.questions.forEach(q => questionPartMapping[q.id] = part);
-                     if (part === 'part3' || part === 'part4') {
-                        block = createAudioPassageBlock(item, part, index);
+                     if (listeningParts.includes(part)) {
+                         block = createAudioPassageBlock(item, part, index);
                      } else {
-                        block = createPassageBlock(item, part, index);
+                         block = createPassageBlock(item, part, index);
                      }
                 } else {
                     questionPartMapping[item.id] = part;
                     block = createQuestionBlock(item, part);
                 }
                 
-                if (index > 0) {
-                     block.classList.add('hidden');
+                // *** MODIFIED: Only hide elements for listening parts ***
+                if (listeningParts.includes(part) && index > 0) {
+                    block.classList.add('hidden');
                 }
+                
                 container.appendChild(block);
-                allQuestionElementsOrder.push(block);
+
+                // *** MODIFIED: Only add listening part elements to the auto-advance order ***
+                if (listeningParts.includes(part)) {
+                    allQuestionElementsOrder.push(block);
+                }
             });
         }
         if (allQuestionElementsOrder.length > 0) {
@@ -942,8 +962,8 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             const scoreDisplay = document.querySelector(`#${partName} .part-score-display`);
             if(scoreDisplay) {
                  scoreDisplay.innerHTML = `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6 rounded-r-lg">
-                    <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
-                 </div>`;
+                     <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
+                   </div>`;
             }
         }
         
