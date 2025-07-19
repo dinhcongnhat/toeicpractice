@@ -138,7 +138,7 @@
 </head>
 <body class="text-gray-800">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-9xl relative">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl relative">
         <!-- Personal Logo -->
         <div class="absolute top-4 left-4 md:top-8 md:left-8">
             <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/503219223_3921023044826501_1753354803024047833_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEjQyJYRo-w1xA6MZdYSPOtG9vEjyMiLHob28SPIyIseh-EDYBUEs-DzKY0I6sR16SlEyQ4w8k6fKDgo2BtYEY-&_nc_ohc=seTBxLXz-eMQ7kNvwGCxEbO&_nc_oc=AdnZUTs-ezawl1-j7yrFUmcexPjIjYX5neS8lS4RMOf_KmO3HPex_RMQOpN9V_R02ks&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=nGPqrOoqxEq8cdvB-VpixQ&oh=00_AfQ8Q4nPmnGKuHnoJ46pSXSM0XGEVbaGmra5OvUvY0EL8Q&oe=68818F43" alt="Personal Logo" class="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover shadow-md">
@@ -552,6 +552,8 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     const questionPartMapping = {};
     let timerInterval;
     let flaggedQuestions = new Set();
+    let allQuestionElementsOrder = [];
+
 
     const modal = document.getElementById('confirmation-modal');
     const modalText = document.getElementById('modal-text');
@@ -578,8 +580,13 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         if (part) {
             changeTab(part);
             setTimeout(() => {
-                const element = document.getElementById(`q-${questionId}`);
+                const element = document.getElementById(`q-${questionId}`) || document.getElementById(`q-${questionId}`).closest('.conversation-group, .passage-container-wrapper');
                 if (element) {
+                    // For grouped questions, we need to show the parent container
+                    if (element.classList.contains('conversation-group') && element.classList.contains('hidden')) {
+                        document.querySelectorAll(`.${part} .conversation-group`).forEach(el => el.classList.add('hidden'));
+                        element.classList.remove('hidden');
+                    }
                     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     element.classList.add('ring-2', 'ring-blue-500', 'ring-offset-2');
                     setTimeout(() => element.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-2'), 2000);
@@ -718,10 +725,15 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         return qBlock;
     }
     
-    function createPassageBlock(pData, part) {
+    function createPassageBlock(pData, part, index) {
         const passageContainer = document.createElement('div');
         passageContainer.className = 'passage-container-wrapper bg-white shadow-md rounded-lg p-6 mb-6 grid grid-cols-1 md:grid-cols-2 gap-8';
-        
+        passageContainer.id = `group-${part}-${index}`;
+        passageContainer.dataset.questions = pData.questions.map(q => q.id).join(',');
+        if (index > 0) {
+            passageContainer.classList.add('hidden');
+        }
+
         const leftCol = document.createElement('div');
         leftCol.className = 'scrollable-column max-h-[85vh] overflow-y-auto pr-4';
 
@@ -752,9 +764,14 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         return passageContainer;
     }
     
-    function createAudioPassageBlock(pData, part) {
+    function createAudioPassageBlock(pData, part, index) {
         const passageContainer = document.createElement('div');
-        passageContainer.className = 'passage-container-wrapper bg-white shadow-md rounded-lg p-6 mb-6';
+        passageContainer.className = 'conversation-group bg-white shadow-md rounded-lg p-6 mb-6';
+        passageContainer.id = `group-${part}-${index}`;
+        passageContainer.dataset.questions = pData.questions.map(q => q.id).join(',');
+        if (index > 0) {
+            passageContainer.classList.add('hidden');
+        }
         
         const audioNote = document.createElement('div');
         audioNote.className = 'audio-placeholder text-base mb-4';
@@ -774,9 +791,22 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             const questionBlock = createQuestionBlock(q, part);
             passageContainer.appendChild(questionBlock);
         });
+
         return passageContainer;
     }
 
+    function autoAdvance(currentElementId) {
+        const currentIndex = allQuestionElementsOrder.findIndex(el => el.id === currentElementId);
+        if (currentIndex > -1 && currentIndex < allQuestionElementsOrder.length - 1) {
+            const nextElement = allQuestionElementsOrder[currentIndex + 1];
+            setTimeout(() => {
+                const currentElement = allQuestionElementsOrder[currentIndex];
+                currentElement.classList.add('hidden');
+                nextElement.classList.remove('hidden');
+                nextElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 2000);
+        }
+    }
 
     function handleAnswerSelection(questionId, selectedOption) {
         if(submissionInProgress) return;
@@ -787,10 +817,22 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         });
         document.querySelector(`button[data-question-id='${questionId}'][data-option='${selectedOption}']`).classList.add('selected');
         
-        // Update answer sheet button
         const ansSheetBtn = document.getElementById(`ans-sheet-btn-${questionId}`);
         if (ansSheetBtn) {
             ansSheetBtn.classList.add('answered');
+        }
+
+        const questionElement = document.getElementById(`q-${questionId}`);
+        const parentGroup = questionElement.closest('.conversation-group, .passage-container-wrapper');
+
+        if (parentGroup) { // It's a grouped question (Part 3, 4, 6, 7)
+            const questionIdsInGroup = parentGroup.dataset.questions.split(',').map(Number);
+            const allAnswered = questionIdsInGroup.every(id => userAnswers.hasOwnProperty(id));
+            if (allAnswered) {
+                autoAdvance(parentGroup.id);
+            }
+        } else { // It's a single question (Part 1, 2, 5)
+            autoAdvance(questionElement.id);
         }
     }
 
@@ -815,24 +857,29 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         for (const part in quizData) {
             const container = document.getElementById(part);
             if (!container) continue;
-            quizData[part].forEach(item => {
+            quizData[part].forEach((item, index) => {
+                let block;
                 if (item.questions) {
-                    item.questions.forEach(q => questionPartMapping[q.id] = part);
+                     item.questions.forEach(q => questionPartMapping[q.id] = part);
+                     if (part === 'part3' || part === 'part4') {
+                        block = createAudioPassageBlock(item, part, index);
+                     } else {
+                        block = createPassageBlock(item, part, index);
+                     }
                 } else {
                     questionPartMapping[item.id] = part;
-                }
-
-                let block;
-                if ((part === 'part6' || part === 'part7') && item.type === 'passage') {
-                    block = createPassageBlock(item, part);
-                } else if ((part === 'part3' || part === 'part4') && item.questions) {
-                    block = createAudioPassageBlock(item, part);
-                }
-                else {
                     block = createQuestionBlock(item, part);
                 }
+                
+                if (index > 0) {
+                     block.classList.add('hidden');
+                }
                 container.appendChild(block);
+                allQuestionElementsOrder.push(block);
             });
+        }
+        if (allQuestionElementsOrder.length > 0) {
+            allQuestionElementsOrder[0].classList.remove('hidden');
         }
         generateAnswerSheet();
     }
