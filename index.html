@@ -69,24 +69,20 @@
             text-align: center;
             transform: scale(0.9);
             transition: transform 0.3s;
-            /* Added shadow as requested */
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
         .modal-overlay.visible .modal-content {
             transform: scale(1);
         }
-        /* Auth Modals Styling Change */
         #auth-container.visible {
             opacity: 1;
             visibility: visible;
         }
-        /* Removed specific green/red overlays, added generic blurred background */
         #login-modal, #register-modal {
-             background-color: rgba(10, 10, 10, 0.6);
-             backdrop-filter: blur(4px);
-             -webkit-backdrop-filter: blur(4px);
+            background-color: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
         }
-
         audio {
             width: 100%;
             margin-top: 1rem;
@@ -164,6 +160,7 @@
                 <h3 class="text-2xl font-bold mb-4">Đăng Ký</h3>
                 <p class="mb-4 text-gray-600">Tạo tài khoản mới để tham gia.</p>
                 <div id="register-error" class="text-red-500 text-sm mb-4 hidden"></div>
+                <input type="text" id="register-fullname" placeholder="Họ và tên thí sinh..." class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
                 <input type="text" id="register-username" placeholder="Tên đăng nhập..." class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
                 <input type="password" id="register-password" placeholder="Mật khẩu..." class="w-full p-2 border border-gray-300 rounded-md mb-6 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
                 <button id="register-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-8 rounded-lg transition-transform transform hover:scale-105 w-full mb-4">Đăng Ký</button>
@@ -635,12 +632,13 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     // --- Auth Functions ---
     function handleRegister(e) {
         e.preventDefault();
+        const fullName = document.getElementById('register-fullname').value.trim();
         const username = document.getElementById('register-username').value.trim();
         const password = document.getElementById('register-password').value.trim();
         const errorDiv = document.getElementById('register-error');
 
-        if (!username || !password) {
-            errorDiv.textContent = 'Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.';
+        if (!fullName || !username || !password) {
+            errorDiv.textContent = 'Vui lòng nhập đầy đủ họ tên, tên đăng nhập và mật khẩu.';
             errorDiv.classList.remove('hidden');
             return;
         }
@@ -652,13 +650,14 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             return;
         }
 
-        users.push({ username, password });
+        users.push({ fullName, username, password });
         localStorage.setItem('toeicUsers', JSON.stringify(users));
         
         alert('Đăng ký thành công! Vui lòng đăng nhập.');
         hideModal(registerModal);
         showModal(loginModal);
         errorDiv.classList.add('hidden');
+        document.getElementById('register-fullname').value = '';
         document.getElementById('register-username').value = '';
         document.getElementById('register-password').value = '';
     }
@@ -679,8 +678,8 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         const user = users.find(u => u.username === username && u.password === password);
 
         if (user) {
-            localStorage.setItem('currentUser', username);
-            testTakerName = username;
+            localStorage.setItem('currentUser', user.username);
+            testTakerName = user.fullName; 
             hideModal(loginModal);
             showModal(readyModal);
             errorDiv.classList.add('hidden');
@@ -692,19 +691,28 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     
     function handleLogout() {
         localStorage.removeItem('currentUser');
+        testTakerName = '';
         window.location.reload();
     }
 
     function checkAuth() {
-        const currentUser = localStorage.getItem('currentUser');
-        if (currentUser) {
-            testTakerName = currentUser;
-            hideModal(authContainer); // Hide the whole auth container
+        const currentUsername = localStorage.getItem('currentUser');
+        if (currentUsername) {
+            let users = JSON.parse(localStorage.getItem('toeicUsers')) || [];
+            const user = users.find(u => u.username === currentUsername);
+            
+            if(user) {
+                testTakerName = user.fullName;
+            } else {
+                testTakerName = currentUsername; // Fallback
+            }
+            
+            hideModal(authContainer);
             hideModal(loginModal);
-            mainTestWrapper.style.display = 'block'; // Ensure test is visible
+            mainTestWrapper.style.display = 'block';
             showModal(readyModal);
         } else {
-            mainTestWrapper.style.display = 'block'; // Show test wrapper for background effect
+            mainTestWrapper.style.display = 'block';
             showModal(loginModal);
         }
     }
@@ -825,7 +833,7 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             qBlock.appendChild(imgWrapper);
             qBlock.appendChild(contentWrapper);
         } else {
-           qBlock.appendChild(contentWrapper);
+          qBlock.appendChild(contentWrapper);
         }
 
         const qHeader = document.createElement('div');
@@ -978,6 +986,37 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
                 autoAdvance(questionElement.id);
             }
         }
+
+        // --- New Logic for Auto-Switching Parts ---
+        const partRanges = {
+            part1: { start: 1, end: 6, next: 'part2' },
+            part2: { start: 7, end: 31, next: 'part3' },
+            part3: { start: 32, end: 70, next: 'part4' },
+            part4: { start: 71, end: 100, next: 'part5' },
+            part5: { start: 101, end: 130, next: 'part6' },
+            part6: { start: 131, end: 146, next: 'part7' }
+        };
+
+        const currentPartId = questionPartMapping[questionId];
+        const currentPartInfo = partRanges[currentPartId];
+
+        if (currentPartInfo && !submissionInProgress) {
+            const { start, end, next } = currentPartInfo;
+            let allAnsweredInPart = true;
+            for (let i = start; i <= end; i++) {
+                if (!userAnswers.hasOwnProperty(i)) {
+                    allAnsweredInPart = false;
+                    break;
+                }
+            }
+
+            if (allAnsweredInPart) {
+                setTimeout(() => {
+                    changeTab(next);
+                    document.querySelector(`.tab-btn[onclick="changeTab('${next}')"]`).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }, 800);
+            }
+        }
     }
 
     function generateAnswerSheet() {
@@ -1039,7 +1078,6 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         submissionInProgress = true;
         clearInterval(timerInterval);
         
-        // Pause audio on submission
         const audioPlayer = document.getElementById('audio-player');
         if (audioPlayer) {
             audioPlayer.pause();
@@ -1096,8 +1134,8 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             const scoreDisplay = document.querySelector(`#${partName} .part-score-display`);
             if(scoreDisplay) {
                  scoreDisplay.innerHTML = `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6 rounded-r-lg">
-                                       <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
-                                     </div>`;
+                                               <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
+                                             </div>`;
             }
         }
         
@@ -1181,7 +1219,6 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     // --- Initial Load ---
     window.onload = () => {
         generateQuiz();
-        // Hide the main test wrapper initially until auth is decided
         mainTestWrapper.style.display = 'none';
         checkAuth();
     };
