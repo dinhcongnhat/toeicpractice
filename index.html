@@ -1160,112 +1160,126 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     }
 
     function gradeTest() {
-        if (submissionInProgress) return;
-        submissionInProgress = true;
-        clearInterval(timerInterval);
-        
-        const audioPlayer = document.getElementById('audio-player');
-        if (audioPlayer) {
-            audioPlayer.pause();
-        }
+        if (submissionInProgress) return;
+        submissionInProgress = true;
+        clearInterval(timerInterval);
+        
+        const audioPlayer = document.getElementById('audio-player');
+        if (audioPlayer) {
+            audioPlayer.pause();
+        }
 
-        // --- ADDED: Show all questions and hide nav controls before grading ---
-        document.querySelectorAll('.tab-content .hidden').forEach(el => {
-            if (el.id && (el.id.startsWith('q-') || el.id.startsWith('group-'))) {
-                el.classList.remove('hidden');
-            }
-        });
-        document.querySelectorAll('.reading-nav-controls').forEach(nav => nav.style.display = 'none');
+        // --- ADDED: Show all questions and hide nav controls before grading ---
+        document.querySelectorAll('.tab-content .hidden').forEach(el => {
+            if (el.id && (el.id.startsWith('q-') || el.id.startsWith('group-'))) {
+                el.classList.remove('hidden');
+            }
+        });
+        document.querySelectorAll('.reading-nav-controls').forEach(nav => nav.style.display = 'none');
 
 
-        const results = {};
-        let allQuestions = [];
+        const results = {};
+        let allQuestions = [];
 
-        for (const partName in quizData) {
-            results[partName] = { correct: 0, total: 0 };
-            quizData[partName].forEach(item => {
-                const questions = item.questions || [item];
-                results[partName].total += questions.length;
-                allQuestions.push(...questions);
-            });
-        }
+        for (const partName in quizData) {
+            results[partName] = { correct: 0, total: 0 };
+            quizData[partName].forEach(item => {
+                const questions = item.questions || [item];
+                results[partName].total += questions.length;
+                allQuestions.push(...questions);
+            });
+        }
 
-        allQuestions.forEach(q => {
-            const partName = questionPartMapping[q.id];
-            const ansBtn = document.getElementById(`ans-sheet-btn-${q.id}`);
+        allQuestions.forEach(q => {
+            const partName = questionPartMapping[q.id];
+            const ansBtn = document.getElementById(`ans-sheet-btn-${q.id}`);
+            const questionBlock = document.getElementById(`q-${q.id}`);
+            if (!questionBlock) return;
 
-            if (userAnswers.hasOwnProperty(q.id)) {
-                const questionBlock = document.getElementById(`q-${q.id}`);
-                if (!questionBlock) return;
-                const options = questionBlock.querySelectorAll('.option-btn');
-                const resultMessage = questionBlock.querySelector('.result-message');
-                const userAnswer = userAnswers[q.id];
-                const correctAnswer = q.answer;
+            const options = questionBlock.querySelectorAll('.option-btn');
+            const resultMessage = questionBlock.querySelector('.result-message');
+            const correctAnswer = q.answer;
 
-                options.forEach(option => {
-                    option.disabled = true;
-                    const choice = option.dataset.option;
-                    if (choice === correctAnswer) {
-                        option.classList.add('correct');
-                    }
-                });
-                
-                if (userAnswer === correctAnswer) {
-                    results[partName].correct++;
-                    if (ansBtn) ansBtn.classList.add('correct');
-                } else {
-                    const selectedButton = questionBlock.querySelector(`.option-btn[data-option="${userAnswer}"]`);
-                    if(selectedButton) selectedButton.classList.add('incorrect');
-                    resultMessage.innerHTML = `Đáp án đúng là <span class="font-bold">${correctAnswer}</span>.`;
-                    resultMessage.classList.add('text-red-600');
-                    if (ansBtn) ansBtn.classList.add('incorrect');
-                }
-            }
-        });
-        
-        document.querySelectorAll('.flag-btn').forEach(btn => btn.disabled = true);
-        
-        for (const partName in results) {
-            const scoreDisplay = document.querySelector(`#${partName} .part-score-display`);
-            if(scoreDisplay) {
-                 scoreDisplay.innerHTML = `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6 rounded-r-lg">
-                                                    <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
-                                                 </div>`;
-            }
-        }
-        
-        const listeningCorrect = results.part1.correct + results.part2.correct + results.part3.correct + results.part4.correct;
-        const readingCorrect = results.part5.correct + results.part6.correct + results.part7.correct;
-        const totalScore = (listeningCorrect + readingCorrect) * 5;
+            // Vô hiệu hóa tất cả các nút tùy chọn
+            options.forEach(option => {
+                option.disabled = true;
+                // Hiển thị đáp án đúng
+                if (option.dataset.option === correctAnswer) {
+                    option.classList.add('correct');
+                }
+            });
 
-        const resultsContainer = document.getElementById('results-container');
-        resultsContainer.innerHTML = `
-            <h2 class="text-3xl font-bold text-blue-700 mb-2">Bảng Tổng Kết Kết Quả</h2>
-            <p class="text-xl font-semibold mb-6">Thí sinh: <span class="text-gray-900 font-bold">${testTakerName || 'Không có tên'}</span></p>
-            <div class="max-w-md mx-auto text-left bg-gray-50 p-4 rounded-lg shadow-inner">
-                <table class="w-full">
-                    <tbody>
-                        <tr class="border-b"><td class="py-2 font-semibold">Listening:</td><td class="py-2 text-right">${listeningCorrect} / 100</td></tr>
-                        <tr class="border-b"><td class="py-2 font-semibold">Reading:</td><td class="py-2 text-right">${readingCorrect} / 100</td></tr>
-                        <tr class="border-b"><td class="pl-4 py-2">Part 1:</td><td class="py-2 text-right">${results.part1.correct} / ${results.part1.total}</td></tr>
-                        <tr class="border-b"><td class="pl-4 py-2">Part 2:</td><td class="py-2 text-right">${results.part2.correct} / ${results.part2.total}</td></tr>
-                        <tr class="border-b"><td class="pl-4 py-2">Part 3:</td><td class="py-2 text-right">${results.part3.correct} / ${results.part3.total}</td></tr>
-                        <tr class="border-b"><td class="pl-4 py-2">Part 4:</td><td class="py-2 text-right">${results.part4.correct} / ${results.part4.total}</td></tr>
-                        <tr class="border-b"><td class="pl-4 py-2">Part 5:</td><td class="py-2 text-right">${results.part5.correct} / ${results.part5.total}</td></tr>
-                        <tr class="border-b"><td class="pl-4 py-2">Part 6:</td><td class="py-2 text-right">${results.part6.correct} / ${results.part6.total}</td></tr>
-                        <tr class="border-b"><td class="pl-4 py-2">Part 7:</td><td class="py-2 text-right">${results.part7.correct} / ${results.part7.total}</td></tr>
-                    </tbody>
-                </table>
-                <div class="mt-6 text-center">
-                    <p class="text-lg font-semibold">Tổng điểm (ước tính):</p>
-                    <p class="text-5xl font-bold text-green-600">${totalScore}</p>
-                </div>
-            </div>
-        `;
-        resultsContainer.classList.remove('hidden');
-        document.getElementById('submit-btn').style.display = 'none';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+            if (userAnswers.hasOwnProperty(q.id)) {
+                // Xử lý câu hỏi ĐÃ được trả lời
+                const userAnswer = userAnswers[q.id];
+                
+                if (userAnswer === correctAnswer) {
+                    results[partName].correct++;
+                    if (ansBtn) ansBtn.classList.add('correct');
+                } else {
+                    // Đánh dấu câu trả lời sai của người dùng
+                    const selectedButton = questionBlock.querySelector(`.option-btn[data-option="${userAnswer}"]`);
+                    if(selectedButton) selectedButton.classList.add('incorrect');
+                    
+                    // Hiển thị thông báo đáp án đúng
+                    resultMessage.innerHTML = `Đáp án đúng là <span class="font-bold">${correctAnswer}</span>.`;
+                    resultMessage.classList.add('text-red-600');
+                    if (ansBtn) ansBtn.classList.add('incorrect');
+                }
+            } else {
+                // *** PHẦN ĐƯỢC THÊM VÀO ***
+                // Xử lý câu hỏi CHƯA được trả lời
+                resultMessage.innerHTML = `Bạn chưa trả lời. Đáp án đúng là <span class="font-bold">${correctAnswer}</span>.`;
+                resultMessage.classList.add('text-orange-600'); // Sử dụng màu khác để phân biệt
+                if (ansBtn) {
+                    ansBtn.classList.add('incorrect'); // Đánh dấu là sai trên bảng trả lời
+                }
+            }
+        });
+        
+        document.querySelectorAll('.flag-btn').forEach(btn => btn.disabled = true);
+        
+        for (const partName in results) {
+            const scoreDisplay = document.querySelector(`#${partName} .part-score-display`);
+            if(scoreDisplay) {
+                 scoreDisplay.innerHTML = `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6 rounded-r-lg">
+                                                    <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
+                                                 </div>`;
+            }
+        }
+        
+        const listeningCorrect = results.part1.correct + results.part2.correct + results.part3.correct + results.part4.correct;
+        const readingCorrect = results.part5.correct + results.part6.correct + results.part7.correct;
+        const totalScore = (listeningCorrect + readingCorrect) * 5;
+
+        const resultsContainer = document.getElementById('results-container');
+        resultsContainer.innerHTML = `
+            <h2 class="text-3xl font-bold text-blue-700 mb-2">Bảng Tổng Kết Kết Quả</h2>
+            <p class="text-xl font-semibold mb-6">Thí sinh: <span class="text-gray-900 font-bold">${testTakerName || 'Không có tên'}</span></p>
+            <div class="max-w-md mx-auto text-left bg-gray-50 p-4 rounded-lg shadow-inner">
+                <table class="w-full">
+                    <tbody>
+                        <tr class="border-b"><td class="py-2 font-semibold">Listening:</td><td class="py-2 text-right">${listeningCorrect} / 100</td></tr>
+                        <tr class="border-b"><td class="py-2 font-semibold">Reading:</td><td class="py-2 text-right">${readingCorrect} / 100</td></tr>
+                        <tr class="border-b"><td class="pl-4 py-2">Part 1:</td><td class="py-2 text-right">${results.part1.correct} / ${results.part1.total}</td></tr>
+                        <tr class="border-b"><td class="pl-4 py-2">Part 2:</td><td class="py-2 text-right">${results.part2.correct} / ${results.part2.total}</td></tr>
+                        <tr class="border-b"><td class="pl-4 py-2">Part 3:</td><td class="py-2 text-right">${results.part3.correct} / ${results.part3.total}</td></tr>
+                        <tr class="border-b"><td class="pl-4 py-2">Part 4:</td><td class="py-2 text-right">${results.part4.correct} / ${results.part4.total}</td></tr>
+                        <tr class="border-b"><td class="pl-4 py-2">Part 5:</td><td class="py-2 text-right">${results.part5.correct} / ${results.part5.total}</td></tr>
+                        <tr class="border-b"><td class="pl-4 py-2">Part 6:</td><td class="py-2 text-right">${results.part6.correct} / ${results.part6.total}</td></tr>
+                        <tr class="border-b"><td class="pl-4 py-2">Part 7:</td><td class="py-2 text-right">${results.part7.correct} / ${results.part7.total}</td></tr>
+                    </tbody>
+                </table>
+                <div class="mt-6 text-center">
+                    <p class="text-lg font-semibold">Tổng điểm (ước tính):</p>
+                    <p class="text-5xl font-bold text-green-600">${totalScore}</p>
+                </div>
+            </div>
+        `;
+        resultsContainer.classList.remove('hidden');
+        document.getElementById('submit-btn').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     function handleSubmit() {
         const unansweredCount = totalQuestions - Object.keys(userAnswers).length;
