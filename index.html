@@ -133,70 +133,82 @@
 </head>
 <body class="text-gray-800">
 
-    <div class="sticky top-0 z-50 bg-white shadow-md">
-        <div class="container mx-auto p-4 max-w-7xl flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/503219223_3921023044826501_1753354803024047833_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEjQyJYRo-w1xA6MZdYSPOtG9vEjyMiLHob28SPIyIseh-EDYBUEs-DzKY0I6sR16SlEyQ4w8k6fKDgo2BtYEY-&_nc_ohc=seTBxLXz-eMQ7kNvwGCxEbO&_nc_oc=AdnZUTs-ezawl1-j7yrFUmcexPjIjYX5neS8lS4RMOf_KmO3HPex_RMQOpN9V_R02ks&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=nGPqrOoqxEq8cdvB-VpixQ&oh=00_AfQ8Q4nPmnGKuHnoJ46pSXSM0XGEVbaGmra5OvUvY0EL8Q&oe=68818F43" alt="Personal Logo" class="w-14 h-14 rounded-full object-cover">
-                <div class="font-bold text-xl" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
-                    <span class="text-blue-600">TOEIC</span><span class="text-red-600"> ONE</span>
-                </div>
-            </div>
-            <div id="timer-component" class="text-right">
-                <h2 class="text-md font-semibold text-gray-700">Thời gian còn lại</h2>
-                <div id="timer" class="text-2xl font-bold text-red-600">120:00</div>
-            </div>
+    <div id="start-test-modal" class="modal-overlay visible">
+        <div class="modal-content">
+            <h3 class="text-2xl font-bold mb-4">Thông Tin Thí Sinh</h3>
+            <p class="mb-4">Vui lòng nhập họ và tên của bạn để bắt đầu bài thi.</p>
+            <input type="text" id="student-name-input" placeholder="Nhập họ và tên..." class="w-full p-2 border border-gray-300 rounded-md mb-6 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+            <p class="mb-6 text-sm text-gray-600">Bạn đã sẵn sàng làm bài thi chưa? Ấn "Bắt đầu" để vào bài thi, audio sẽ tự động chạy và thời gian sẽ bắt đầu đếm ngược.</p>
+            <button id="start-test-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg transition-transform transform hover:scale-105">Bắt đầu</button>
         </div>
     </div>
 
-    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
-        <header class="text-center my-8">
-            <h1 class="text-3xl md:text-4xl font-bold text-blue-600">TOEIC EXAMINATION - ETS 2019 TEST 3</h1>
-            <p class="text-green-500 mt-1">GOOD LUCK🍀</p>
-        </header>
-
-        <div class="audio-player-container bg-white p-4 rounded-lg shadow-md mb-6">
-            <h2 class="text-xl font-bold text-center text-gray-700">Listening Section Audio</h2>
-            <audio id="audio-player" controls src="https://cloud.jtscpro.top/index.php/s/4yLH9a8KBCgWyzE/download">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        
-        <div id="lock-notification" class="hidden bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded-r-lg" role="alert">
-            <p class="font-bold">Hết giờ làm bài nghe!</p>
-            <p>Bạn không thể thay đổi đáp án cho Part 1, 2, 3, và 4.</p>
-        </div>
-
-        <div class="tabs-container overflow-x-auto pb-3 mb-6 border-b border-gray-300">
-            <div id="tabs" class="flex space-x-2 md:space-x-4">
-                <button class="tab-btn active py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part1')">Part 1</button>
-                <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part2')">Part 2</button>
-                <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part3')">Part 3</button>
-                <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part4')">Part 4</button>
-                <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part5')">Part 5</button>
-                <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part6')">Part 6</button>
-                <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part7')">Part 7</button>
-                <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('answerSheet')">Bảng Trả Lời</button>
+    <div id="main-test-wrapper" style="display: none;">
+        <div class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto p-4 max-w-7xl flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/503219223_3921023044826501_1753354803024047833_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEjQyJYRo-w1xA6MZdYSPOtG9vEjyMiLHob28SPIyIseh-EDYBUEs-DzKY0I6sR16SlEyQ4w8k6fKDgo2BtYEY-&_nc_ohc=seTBxLXz-eMQ7kNvwGCxEbO&_nc_oc=AdnZUTs-ezawl1-j7yrFUmcexPjIjYX5neS8lS4RMOf_KmO3HPex_RMQOpN9V_R02ks&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=nGPqrOoqxEq8cdvB-VpixQ&oh=00_AfQ8Q4nPmnGKuHnoJ46pSXSM0XGEVbaGmra5OvUvY0EL8Q&oe=68818F43" alt="Personal Logo" class="w-14 h-14 rounded-full object-cover">
+                    <div class="font-bold text-xl" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+                        <span class="text-blue-600">TOEIC</span><span class="text-red-600"> ONE</span>
+                    </div>
+                </div>
+                <div id="timer-component" class="text-right">
+                    <h2 class="text-md font-semibold text-gray-700">Thời gian còn lại</h2>
+                    <div id="timer" class="text-2xl font-bold text-red-600">120:00</div>
+                </div>
             </div>
         </div>
 
-        <main id="quiz-container">
-            <div id="part1" class="tab-content active"><div class="part-score-display"></div></div>
-            <div id="part2" class="tab-content"><div class="part-score-display"></div></div>
-            <div id="part3" class="tab-content"><div class="part-score-display"></div></div>
-            <div id="part4" class="tab-content"><div class="part-score-display"></div></div>
-            <div id="part5" class="tab-content"><div class="part-score-display"></div></div>
-            <div id="part6" class="tab-content"><div class="part-score-display"></div></div>
-            <div id="part7" class="tab-content"><div class="part-score-display"></div></div>
-            <div id="answerSheet" class="tab-content"></div>
-        </main>
-        
-        <div id="results-container" class="text-center mt-8 p-6 bg-white rounded-lg shadow-lg hidden">
+        <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+            <header class="text-center my-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-blue-600">TOEIC EXAMINATION - ETS 2019 TEST 3</h1>
+                <p class="text-green-500 mt-1">GOOD LUCK🍀</p>
+            </header>
+
+            <div class="audio-player-container bg-white p-4 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-bold text-center text-gray-700">Listening Section Audio</h2>
+                <audio id="audio-player" controls src="https://cloud.jtscpro.top/index.php/s/4yLH9a8KBCgWyzE/download">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            
+            <div id="lock-notification" class="hidden bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded-r-lg" role="alert">
+                <p class="font-bold">Hết giờ làm bài nghe!</p>
+                <p>Bạn không thể thay đổi đáp án cho Part 1, 2, 3, và 4.</p>
             </div>
 
-        <div class="text-center mt-8">
-            <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-12 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                Nộp Bài
-            </button>
+            <div class="tabs-container overflow-x-auto pb-3 mb-6 border-b border-gray-300">
+                <div id="tabs" class="flex space-x-2 md:space-x-4">
+                    <button class="tab-btn active py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part1')">Part 1</button>
+                    <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part2')">Part 2</button>
+                    <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part3')">Part 3</button>
+                    <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part4')">Part 4</button>
+                    <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part5')">Part 5</button>
+                    <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part6')">Part 6</button>
+                    <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('part7')">Part 7</button>
+                    <button class="tab-btn py-2 px-4 rounded-t-lg border-b-4 border-transparent" onclick="changeTab('answerSheet')">Bảng Trả Lời</button>
+                </div>
+            </div>
+
+            <main id="quiz-container">
+                <div id="part1" class="tab-content active"><div class="part-score-display"></div></div>
+                <div id="part2" class="tab-content"><div class="part-score-display"></div></div>
+                <div id="part3" class="tab-content"><div class="part-score-display"></div></div>
+                <div id="part4" class="tab-content"><div class="part-score-display"></div></div>
+                <div id="part5" class="tab-content"><div class="part-score-display"></div></div>
+                <div id="part6" class="tab-content"><div class="part-score-display"></div></div>
+                <div id="part7" class="tab-content"><div class="part-score-display"></div></div>
+                <div id="answerSheet" class="tab-content"></div>
+            </main>
+            
+            <div id="results-container" class="text-center mt-8 p-6 bg-white rounded-lg shadow-lg hidden">
+                </div>
+
+            <div class="text-center mt-8">
+                <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-12 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                    Nộp Bài
+                </button>
+            </div>
         </div>
     </div>
 
@@ -546,6 +558,7 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     let timerInterval;
     let flaggedQuestions = new Set();
     let allQuestionElementsOrder = [];
+    let testTakerName = '';
 
 
     const modal = document.getElementById('confirmation-modal');
@@ -573,15 +586,12 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         if (part) {
             changeTab(part);
             setTimeout(() => {
-                // For grouped questions, find the group wrapper. For others, find the question block.
                 const groupWrapper = document.getElementById(`q-${questionId}`)?.closest('.conversation-group, .passage-container-wrapper');
                 const element = groupWrapper || document.getElementById(`q-${questionId}`);
 
                 if (element) {
-                    // Only apply hide/show logic for listening parts (1-4)
                     if (['part1', 'part2', 'part3', 'part4'].includes(part)) {
                         const partContainer = document.getElementById(part);
-                        // Hide all sibling question/group blocks within the same part
                         Array.from(partContainer.children).forEach(child => {
                             if (child.id && (child.id.startsWith('q-') || child.id.startsWith('group-'))) {
                                 child.classList.add('hidden');
@@ -590,7 +600,6 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
                         element.classList.remove('hidden');
                     }
 
-                    // Scroll into view for all parts
                     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     element.classList.add('ring-2', 'ring-blue-500', 'ring-offset-2');
                     setTimeout(() => element.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-2'), 2000);
@@ -630,7 +639,6 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
 
             timerDisplay.textContent = minutes + ":" + seconds;
 
-            // Lock listening section after 45 minutes (when 75 minutes remain)
             if (duration === 75 * 60) {
                 lockListeningSection();
             }
@@ -735,11 +743,6 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         passageContainer.id = `group-${part}-${index}`;
         passageContainer.dataset.questions = pData.questions.map(q => q.id).join(',');
         
-        // This logic is now handled in generateQuiz
-        // if (index > 0) {
-        //     passageContainer.classList.add('hidden');
-        // }
-
         const leftCol = document.createElement('div');
         leftCol.className = 'scrollable-column max-h-[85vh] overflow-y-auto pr-4';
 
@@ -775,11 +778,6 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         passageContainer.className = 'conversation-group bg-white shadow-md rounded-lg p-6 mb-6';
         passageContainer.id = `group-${part}-${index}`;
         passageContainer.dataset.questions = pData.questions.map(q => q.id).join(',');
-        
-        // This logic is now handled in generateQuiz
-        // if (index > 0) {
-        //    passageContainer.classList.add('hidden');
-        // }
         
         const audioNote = document.createElement('div');
         audioNote.className = 'audio-placeholder text-base mb-4';
@@ -834,15 +832,14 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         const parentGroup = questionElement.closest('.conversation-group, .passage-container-wrapper');
         const part = questionPartMapping[questionId];
 
-        // *** MODIFIED: Only auto-advance for listening parts ***
         if (['part1', 'part2', 'part3', 'part4'].includes(part)) {
-            if (parentGroup) { // It's a grouped question (Part 3, 4)
+            if (parentGroup) {
                 const questionIdsInGroup = parentGroup.dataset.questions.split(',').map(Number);
                 const allAnswered = questionIdsInGroup.every(id => userAnswers.hasOwnProperty(id));
                 if (allAnswered) {
                     autoAdvance(parentGroup.id);
                 }
-            } else { // It's a single question (Part 1, 2)
+            } else {
                 autoAdvance(questionElement.id);
             }
         }
@@ -850,7 +847,7 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
 
     function generateAnswerSheet() {
         const container = document.getElementById('answerSheet');
-        container.innerHTML = ''; // Clear previous content
+        container.innerHTML = '';
         const grid = document.createElement('div');
         grid.className = 'grid grid-cols-10 md:grid-cols-20 gap-2';
         
@@ -885,14 +882,12 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
                     block = createQuestionBlock(item, part);
                 }
                 
-                // *** MODIFIED: Only hide elements for listening parts ***
                 if (listeningParts.includes(part) && index > 0) {
                     block.classList.add('hidden');
                 }
                 
                 container.appendChild(block);
 
-                // *** MODIFIED: Only add listening part elements to the auto-advance order ***
                 if (listeningParts.includes(part)) {
                     allQuestionElementsOrder.push(block);
                 }
@@ -954,28 +949,26 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             }
         });
         
-        // Disable all flag buttons after submission
         document.querySelectorAll('.flag-btn').forEach(btn => btn.disabled = true);
         
-        // Display per-part scores
         for (const partName in results) {
             const scoreDisplay = document.querySelector(`#${partName} .part-score-display`);
             if(scoreDisplay) {
                  scoreDisplay.innerHTML = `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6 rounded-r-lg">
                      <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
-                   </div>`;
+                    </div>`;
             }
         }
         
-        // Display final summary
         const listeningCorrect = results.part1.correct + results.part2.correct + results.part3.correct + results.part4.correct;
         const readingCorrect = results.part5.correct + results.part6.correct + results.part7.correct;
         const totalScore = (listeningCorrect + readingCorrect) * 5;
 
         const resultsContainer = document.getElementById('results-container');
         resultsContainer.innerHTML = `
-            <h2 class="text-2xl font-bold text-blue-700 mb-4">Bảng Tổng Kết Kết Quả</h2>
-            <div class="max-w-md mx-auto text-left">
+            <h2 class="text-3xl font-bold text-blue-700 mb-2">Bảng Tổng Kết Kết Quả</h2>
+            <p class="text-xl font-semibold mb-6">Thí sinh: <span class="text-gray-900 font-bold">${testTakerName || 'Không có tên'}</span></p>
+            <div class="max-w-md mx-auto text-left bg-gray-50 p-4 rounded-lg shadow-inner">
                 <table class="w-full">
                     <tbody>
                         <tr class="border-b"><td class="py-2 font-semibold">Listening:</td><td class="py-2 text-right">${listeningCorrect} / 100</td></tr>
@@ -1004,32 +997,35 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         const unansweredCount = totalQuestions - Object.keys(userAnswers).length;
         if (unansweredCount === totalQuestions) {
             showModal('Bạn chưa trả lời câu nào. Bạn có chắc chắn muốn nộp bài và nhận 0 điểm không?');
-            confirmBtn.style.display = 'inline-block';
-            cancelBtn.textContent = 'Quay lại';
-            confirmBtn.onclick = () => { hideModal(); gradeTest(); };
-            cancelBtn.onclick = hideModal;
-            return;
-        }
-
-        if (unansweredCount > 0) {
+        } else if (unansweredCount > 0) {
             showModal(`Bạn còn ${unansweredCount} câu chưa trả lời. Bạn có chắc chắn muốn nộp bài không?`);
-            confirmBtn.style.display = 'inline-block';
-            cancelBtn.textContent = 'Quay lại';
-            confirmBtn.onclick = () => { hideModal(); gradeTest(); };
-            cancelBtn.onclick = hideModal;
         } else {
             showModal(`Bạn đã hoàn thành tất cả các câu hỏi. Bạn có muốn nộp bài không?`);
-            confirmBtn.style.display = 'inline-block';
-            cancelBtn.textContent = 'Quay lại';
-            confirmBtn.onclick = () => { hideModal(); gradeTest(); };
-            cancelBtn.onclick = hideModal;
         }
     }
 
     document.getElementById('submit-btn').addEventListener('click', handleSubmit);
+
+    document.getElementById('start-test-btn').addEventListener('click', () => {
+        const nameInput = document.getElementById('student-name-input');
+        testTakerName = nameInput.value.trim();
+
+        if (testTakerName === "") {
+            alert("Vui lòng nhập họ và tên của bạn.");
+            return;
+        }
+
+        document.getElementById('start-test-modal').style.display = 'none';
+        document.getElementById('main-test-wrapper').style.display = 'block';
+
+        startTimer();
+        document.getElementById('audio-player').play().catch(e => {
+            console.error("Audio autoplay was prevented.", e);
+        });
+    });
+
     window.onload = () => {
         generateQuiz();
-        startTimer();
     };
     </script>
 </body>
