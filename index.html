@@ -600,6 +600,13 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     let allQuestionElementsOrder = [];
     let testTakerName = '';
 
+    // --- NEW: State for reading parts navigation ---
+    let readingPartCurrentIndex = {
+        part5: 0,
+        part6: 0,
+        part7: 0
+    };
+
     // --- DOM Elements ---
     const confirmationModal = document.getElementById('confirmation-modal');
     const modalText = document.getElementById('modal-text');
@@ -729,28 +736,45 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         if (part) {
             changeTab(part);
             setTimeout(() => {
-                const groupWrapper = document.getElementById(`q-${questionId}`)?.closest('.conversation-group, .passage-container-wrapper');
-                const element = groupWrapper || document.getElementById(`q-${questionId}`);
+                const elementToShow = document.getElementById(`q-${questionId}`)?.closest('.conversation-group, .passage-container-wrapper') || document.getElementById(`q-${questionId}`);
 
-                if (element) {
-                    if (['part1', 'part2', 'part3', 'part4'].includes(part)) {
+                if (elementToShow) {
+                    const isReadingPartWithNav = ['part5', 'part6', 'part7'].includes(part);
+
+                    if (isReadingPartWithNav) {
+                        const container = document.getElementById(part);
+                        const items = Array.from(container.children).filter(el => el.id && (el.id.startsWith('q-') || el.id.startsWith('group-')));
+                        const targetIndex = items.findIndex(item => item.id === elementToShow.id);
+                        
+                        if (targetIndex !== -1) {
+                            items.forEach((item, idx) => {
+                                if (idx === targetIndex) {
+                                    item.classList.remove('hidden');
+                                } else {
+                                    item.classList.add('hidden');
+                                }
+                            });
+                            readingPartCurrentIndex[part] = targetIndex;
+                            updateNavButtons(part);
+                        }
+                    } else if (['part1', 'part2', 'part3', 'part4'].includes(part)) {
                         const partContainer = document.getElementById(part);
                         Array.from(partContainer.children).forEach(child => {
                             if (child.id && (child.id.startsWith('q-') || child.id.startsWith('group-'))) {
                                 child.classList.add('hidden');
                             }
                         });
-                        element.classList.remove('hidden');
+                        elementToShow.classList.remove('hidden');
                     }
-
-                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    element.classList.add('ring-2', 'ring-blue-500', 'ring-offset-2');
-                    setTimeout(() => element.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-2'), 2000);
+                    
+                    elementToShow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    elementToShow.classList.add('ring-2', 'ring-blue-500', 'ring-offset-2');
+                    setTimeout(() => elementToShow.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-2'), 2000);
                 }
             }, 100);
         }
     }
-
+    
     function changeTab(tabId) {
         document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -953,7 +977,7 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
                 currentElement.classList.add('hidden');
                 nextElement.classList.remove('hidden');
                 nextElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 2500); // Changed to 2.5 seconds
+            }, 2500);
         }
     }
 
@@ -987,14 +1011,11 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             }
         }
 
-        // --- New Logic for Auto-Switching Parts ---
         const partRanges = {
             part1: { start: 1, end: 6, next: 'part2' },
             part2: { start: 7, end: 31, next: 'part3' },
             part3: { start: 32, end: 70, next: 'part4' },
             part4: { start: 71, end: 100, next: 'part5' },
-            part5: { start: 101, end: 130, next: 'part6' },
-            part6: { start: 131, end: 146, next: 'part7' }
         };
 
         const currentPartId = questionPartMapping[questionId];
@@ -1035,6 +1056,61 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         }
         container.appendChild(grid);
     }
+    
+    // --- NEW: Reading Parts Navigation Functions ---
+    function createNavigationControls(partId) {
+        const navContainer = document.createElement('div');
+        navContainer.className = 'flex justify-between items-center mt-8 reading-nav-controls';
+
+        const prevBtn = document.createElement('button');
+        prevBtn.id = `prev-btn-${partId}`;
+        prevBtn.className = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all';
+        prevBtn.innerHTML = '&larr; Câu Trước';
+        prevBtn.onclick = () => navigateReadingQuestion(partId, 'prev');
+
+        const nextBtn = document.createElement('button');
+        nextBtn.id = `next-btn-${partId}`;
+        nextBtn.className = 'bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all';
+        nextBtn.innerHTML = 'Câu Sau &rarr;';
+        nextBtn.onclick = () => navigateReadingQuestion(partId, 'next');
+
+        navContainer.appendChild(prevBtn);
+        navContainer.appendChild(nextBtn);
+        return navContainer;
+    }
+
+    function navigateReadingQuestion(partId, direction) {
+        const container = document.getElementById(partId);
+        const items = Array.from(container.children).filter(el => el.id && (el.id.startsWith('q-') || el.id.startsWith('group-')));
+        if (items.length === 0) return;
+
+        let currentIndex = readingPartCurrentIndex[partId];
+        items[currentIndex].classList.add('hidden');
+
+        if (direction === 'next') {
+            currentIndex = Math.min(currentIndex + 1, items.length - 1);
+        } else { // 'prev'
+            currentIndex = Math.max(currentIndex - 1, 0);
+        }
+
+        readingPartCurrentIndex[partId] = currentIndex;
+        items[currentIndex].classList.remove('hidden');
+        items[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        updateNavButtons(partId);
+    }
+
+    function updateNavButtons(partId) {
+        const container = document.getElementById(partId);
+        const items = Array.from(container.children).filter(el => el.id && (el.id.startsWith('q-') || el.id.startsWith('group-')));
+        const currentIndex = readingPartCurrentIndex[partId];
+        
+        const prevBtn = document.getElementById(`prev-btn-${partId}`);
+        const nextBtn = document.getElementById(`next-btn-${partId}`);
+
+        if (prevBtn) prevBtn.disabled = (currentIndex === 0);
+        if (nextBtn) nextBtn.disabled = (currentIndex === items.length - 1);
+    }
 
     function generateQuiz() {
         const listeningParts = ['part1', 'part2', 'part3', 'part4'];
@@ -1042,6 +1118,9 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         for (const part in quizData) {
             const container = document.getElementById(part);
             if (!container) continue;
+
+            const isReadingPartWithNav = ['part5', 'part6', 'part7'].includes(part);
+
             quizData[part].forEach((item, index) => {
                 let block;
                 if (item.questions) {
@@ -1056,7 +1135,7 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
                     block = createQuestionBlock(item, part);
                 }
                 
-                if (listeningParts.includes(part) && index > 0) {
+                if ((listeningParts.includes(part) || isReadingPartWithNav) && index > 0) {
                     block.classList.add('hidden');
                 }
                 
@@ -1066,6 +1145,13 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
                     allQuestionElementsOrder.push(block);
                 }
             });
+
+            // --- ADDED: Add nav controls for reading parts ---
+            if (isReadingPartWithNav) {
+                const navControls = createNavigationControls(part);
+                container.appendChild(navControls);
+                updateNavButtons(part);
+            }
         }
         if (allQuestionElementsOrder.length > 0) {
             allQuestionElementsOrder[0].classList.remove('hidden');
@@ -1082,6 +1168,15 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         if (audioPlayer) {
             audioPlayer.pause();
         }
+
+        // --- ADDED: Show all questions and hide nav controls before grading ---
+        document.querySelectorAll('.tab-content .hidden').forEach(el => {
+            if (el.id && (el.id.startsWith('q-') || el.id.startsWith('group-'))) {
+                el.classList.remove('hidden');
+            }
+        });
+        document.querySelectorAll('.reading-nav-controls').forEach(nav => nav.style.display = 'none');
+
 
         const results = {};
         let allQuestions = [];
@@ -1134,8 +1229,8 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             const scoreDisplay = document.querySelector(`#${partName} .part-score-display`);
             if(scoreDisplay) {
                  scoreDisplay.innerHTML = `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6 rounded-r-lg">
-                                               <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
-                                             </div>`;
+                                                    <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
+                                                 </div>`;
             }
         }
         
