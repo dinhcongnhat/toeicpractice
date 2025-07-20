@@ -324,12 +324,11 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     ],
 };
 const explanationsData = {
-    //--- PART 1 & 2 & 3 & 4: Dữ liệu này được lấy trực tiếp từ quizData ban đầu ---
-    // (Phần giải thích chi tiết trong PDF không bao gồm Part 1-4)
     //--- PART 5 ---
     101: {
         question: "York Development Corporation marked the ------- of the Ford Road office complex with a ribbon-cutting ceremony.",
         options: { A: 'opens', B: 'opening', C: 'opened', D: 'openly' },
+        options_vn: { A: '(động từ) mở', B: '(danh từ) sự khai trương', C: '(quá khứ) đã mở', D: '(trạng từ) một cách cởi mở' },
         answer: 'B',
         type: "Từ loại (Word Form)",
         explanation: "Đây là dạng câu hỏi về từ loại. Sau mạo từ 'the' cần một danh từ. 'Opening' là danh từ có nghĩa là 'việc mở, lễ khánh thành'.",
@@ -338,6 +337,7 @@ const explanationsData = {
     102: {
         question: "Staff at the Bismarck Hotel were ------- helpful to us during our stay.",
         options: { A: 'quite', B: 'enough', C: 'far', D: 'early' },
+        options_vn: { A: 'khá', B: 'đủ', C: 'xa', D: 'sớm' },
         answer: 'A',
         type: "Từ vựng (Vocabulary)",
         explanation: "Cần một từ để bổ nghĩa cho tính từ 'helpful'. 'Quite' (khá) là trạng từ phù hợp. 'Enough' thường đứng sau tính từ/trạng từ, 'far' dùng cho so sánh hơn.",
@@ -346,6 +346,7 @@ const explanationsData = {
     103: {
         question: "Ms. Luo will explain some possible consequences of the ------- merger with the Wilson-Peek Corporation.",
         options: { A: 'proposed', B: 'proposal', C: 'proposition', D: 'proposing' },
+        options_vn: { A: '(adj) được đề xuất', B: '(n) bản đề xuất', C: '(n) lời đề nghị', D: '(v-ing) đang đề xuất' },
         answer: 'A',
         type: "Từ loại (Word Form)",
         explanation: "Trước danh từ 'merger' (sự sáp nhập), cần một tính từ. 'Proposed' là tính từ dạng bị động mang nghĩa 'được đề xuất', phù hợp với ngữ cảnh.",
@@ -354,6 +355,7 @@ const explanationsData = {
     104: {
         question: "The Springdale supermarket survey ------- will be released a week after they are evaluated.",
         options: { A: 'events', B: 'stores', C: 'results', D: 'coupons' },
+        options_vn: { A: 'sự kiện', B: 'cửa hàng', C: 'kết quả', D: 'phiếu giảm giá' },
         answer: 'C',
         type: "Từ vựng (Vocabulary)",
         explanation: "Đây là câu hỏi từ vựng. Cần một từ đi kèm với 'survey' (khảo sát). 'Results' (kết quả) là phù hợp nhất, tạo thành cụm 'survey results' (kết quả khảo sát).",
@@ -362,6 +364,7 @@ const explanationsData = {
     105: {
         question: "The new printer operates more ------- than the previous model did.",
         options: { A: 'quickest', B: 'quickness', C: 'quick', D: 'quickly' },
+        options_vn: { A: 'nhanh nhất', B: '(n) sự nhanh chóng', C: '(adj) nhanh', D: '(adv) một cách nhanh chóng' },
         answer: 'D',
         type: "Từ loại (Word Form)",
         explanation: "Động từ 'operates' (hoạt động) cần được bổ nghĩa bởi một trạng từ. Do đó, 'quickly' là đáp án đúng.",
@@ -370,6 +373,7 @@ const explanationsData = {
     106: {
         question: "Here at Vanguard Buying Club, ------- help members find quality merchandise at the lowest possible prices.",
         options: { A: 'us', B: 'our', C: 'we', D: 'ourselves' },
+        options_vn: { A: 'chúng tôi (tân ngữ)', B: 'của chúng tôi', C: 'chúng tôi (chủ ngữ)', D: 'bản thân chúng tôi' },
         answer: 'C',
         type: "Đại từ (Pronoun)",
         explanation: "Câu cần một chủ ngữ cho động từ 'help'. Trong các lựa chọn, chỉ có 'we' là đại từ nhân xưng có thể làm chủ ngữ.",
@@ -378,6 +382,7 @@ const explanationsData = {
     107: {
         question: "Management announced that all salespeople would be receiving a bonus this year, ------- in time for summer vacations.",
         options: { A: 'just', B: 'as', C: 'only', D: 'by' },
+        options_vn: { A: 'vừa kịp', B: 'như là / vì', C: 'chỉ', D: 'trước / bởi' },
         answer: 'A',
         type: "Từ vựng (Vocabulary)",
         explanation: "Cụm từ 'just in time' có nghĩa là 'vừa kịp lúc', phù hợp nhất với ngữ cảnh của câu.",
@@ -386,6 +391,7 @@ const explanationsData = {
     108: {
         question: "According to Florida Digital Designer Magazine, many graphic designers do not consider ------- to be traditional artists.",
         options: { A: 'it', B: 'their', C: 'themselves', D: 'itself' },
+        options_vn: { A: 'nó', B: 'của họ', C: 'chính họ', D: 'chính nó' },
         answer: 'C',
         type: "Đại từ (Pronoun)",
         explanation: "Đây là câu hỏi về đại từ. 'Themselves' là đại từ phản thân thay thế cho chủ ngữ 'many graphic designers'.",
@@ -394,6 +400,7 @@ const explanationsData = {
     109: {
         question: "A wooden bridge crossing the wading pond ------- to the hotel's nine-hole golf course.",
         options: { A: 'prepares', B: 'leads', C: 'presents', D: 'takes' },
+        options_vn: { A: 'chuẩn bị', B: 'dẫn đến', C: 'trình bày', D: 'lấy đi' },
         answer: 'B',
         type: "Từ vựng (Vocabulary)",
         explanation: "Động từ 'leads (to)' có nghĩa là 'dẫn đến', phù hợp để chỉ con đường từ cây cầu đến sân golf.",
@@ -402,6 +409,7 @@ const explanationsData = {
     110: {
         question: "A special sale on stationery ------- on the Write Things Web site yesterday.",
         options: { A: 'was announced', B: 'announced', C: 'was announcing', D: 'to announce' },
+        options_vn: { A: 'đã được thông báo', B: 'đã thông báo', C: 'đang thông báo', D: 'để thông báo' },
         answer: 'A',
         type: "Thì và Dạng của Động từ (Tense and Voice)",
         explanation: "Dấu hiệu 'yesterday' cho thấy đây là thì quá khứ đơn. Chủ ngữ 'A special sale' (một đợt giảm giá) là vật, nên động từ phải ở dạng bị động 'was announced' (đã được công bố).",
@@ -410,6 +418,7 @@ const explanationsData = {
     111: {
         question: "All produce transported by Gocargo Trucking is refrigerated ------- upon pickup to prevent spoilage.",
         options: { A: 'lately', B: 'promptly', C: 'potentially', D: 'clearly' },
+        options_vn: { A: 'gần đây', B: 'kịp thời, ngay lập tức', C: 'có khả năng', D: 'một cách rõ ràng' },
         answer: 'B',
         type: "Từ vựng (Vocabulary)",
         explanation: "'Promptly' có nghĩa là 'kịp thời, ngay lập tức', phù hợp với yêu cầu làm lạnh hàng hóa ngay khi lấy hàng để tránh hư hỏng.",
@@ -418,6 +427,7 @@ const explanationsData = {
     112: {
         question: "The Ferrera Museum plans to exhibit a collection of Lucia Almeida's most ------- sculptures.",
         options: { A: 'innovative', B: 'innovation', C: 'innovatively', D: 'innovate' },
+        options_vn: { A: '(adj) sáng tạo', B: '(n) sự sáng tạo', C: '(adv) một cách sáng tạo', D: '(v) sáng tạo' },
         answer: 'A',
         type: "Từ loại (Word Form)",
         explanation: "Sau trạng từ chỉ mức độ 'most', ta cần một tính từ để bổ nghĩa cho danh từ 'sculptures'. 'Innovative' (sáng tạo, đổi mới) là tính từ phù hợp.",
@@ -426,6 +436,7 @@ const explanationsData = {
     113: {
         question: "The bank's cashier windows are open daily from 8:00 A.M. to 4:00 P.M. ------- on Sundays.",
         options: { A: 'except', B: 'until', C: 'nor', D: 'yet' },
+        options_vn: { A: 'ngoại trừ', B: 'cho đến khi', C: 'cũng không', D: 'chưa / nhưng' },
         answer: 'A',
         type: "Giới từ/Liên từ (Preposition/Conjunction)",
         explanation: "'Except' (ngoại trừ) được dùng để chỉ một trường hợp ngoại lệ so với quy luật chung được nêu trước đó.",
@@ -434,6 +445,7 @@ const explanationsData = {
     114: {
         question: "Inventory control and warehousing strategies ------- within the responsibilities of the supply chain manager.",
         options: { A: 'have', B: 'cover', C: 'mark', D: 'fall' },
+        options_vn: { A: 'có', B: 'bao gồm', C: 'đánh dấu', D: 'thuộc về' },
         answer: 'D',
         type: "Từ vựng (Vocabulary)",
         explanation: "Cụm từ 'fall within the responsibilities of' có nghĩa là 'thuộc trách nhiệm của', là một cách diễn đạt phổ biến.",
@@ -442,6 +454,7 @@ const explanationsData = {
     115: {
         question: "Of all the truck models available today, it can be difficult to figure out ------- would best suit your company's needs.",
         options: { A: 'when', B: 'why', C: 'which', D: 'where' },
+        options_vn: { A: 'khi nào', B: 'tại sao', C: 'cái nào', D: 'ở đâu' },
         answer: 'C',
         type: "Mệnh đề danh từ (Noun Clause)",
         explanation: "'Which' được dùng để thay thế cho 'models' (mẫu), giới thiệu một lựa chọn trong một nhóm đã xác định.",
@@ -450,6 +463,7 @@ const explanationsData = {
     116: {
         question: "CEO Yoshiro Kasai has expressed complete faith in Fairway Maritime's ------- to deliver the product on time.",
         options: { A: 'belief', B: 'measure', C: 'problem', D: 'ability' },
+        options_vn: { A: 'niềm tin', B: 'biện pháp', C: 'vấn đề', D: 'khả năng' },
         answer: 'D',
         type: "Từ vựng (Vocabulary)",
         explanation: "Sau tính từ sở hữu 'Fairway Maritime's' cần một danh từ. Cấu trúc 'ability to V' (khả năng làm gì đó) là phù hợp nhất.",
@@ -458,6 +472,7 @@ const explanationsData = {
     117: {
         question: "At Derwin Securities, trainees alternate ------- attending information sessions and working closely with assigned mentors.",
         options: { A: 'along', B: 'against', C: 'between', D: 'near' },
+        options_vn: { A: 'dọc theo', B: 'chống lại', C: 'giữa', D: 'gần' },
         answer: 'C',
         type: "Giới từ (Preposition)",
         explanation: "Cấu trúc 'alternate between A and B' có nghĩa là 'xen kẽ giữa A và B'.",
@@ -466,6 +481,7 @@ const explanationsData = {
     118: {
         question: "Company Vice President Astrid Barretto had no ------- to being considered for the position of CEO.",
         options: { A: 'objected', B: 'objecting', C: 'objects', D: 'objection' },
+        options_vn: { A: '(v-ed) đã phản đối', B: '(v-ing) đang phản đối', C: '(n) đồ vật / (v) phản đối', D: '(n) sự phản đối' },
         answer: 'D',
         type: "Từ loại (Word Form)",
         explanation: "Sau 'no' cần một danh từ. 'Objection' (sự phản đối) là danh từ phù hợp. Cấu trúc 'have no objection to being...' (không phản đối việc được...).",
@@ -474,6 +490,7 @@ const explanationsData = {
     119: {
         question: "Belinda McKay fans who are ------- to the author's formal writing style will be surprised by her latest biography.",
         options: { A: 'fortunate', B: 'readable', C: 'comparable', D: 'accustomed' },
+        options_vn: { A: 'may mắn', B: 'dễ đọc', C: 'có thể so sánh', D: 'quen với' },
         answer: 'D',
         type: "Từ vựng (Vocabulary)",
         explanation: "Cấu trúc 'be accustomed to something' có nghĩa là 'quen với việc gì đó'.",
@@ -482,6 +499,7 @@ const explanationsData = {
     120: {
         question: "The Southeast Asia Business Convention will feature ------- known and respected leaders from countries across the region.",
         options: { A: 'widen', B: 'wider', C: 'widely', D: 'wide' },
+        options_vn: { A: '(v) mở rộng', B: 'rộng hơn', C: '(adv) một cách rộng rãi', D: '(adj) rộng' },
         answer: 'C',
         type: "Từ loại (Word Form)",
         explanation: "Cần một trạng từ ('widely') để bổ nghĩa cho quá khứ phân từ đóng vai trò như tính từ ('known'). Cụm 'widely known' có nghĩa là 'được biết đến rộng rãi'.",
@@ -490,6 +508,7 @@ const explanationsData = {
     121: {
         question: "------- the high cost of fuel, customers are buying smaller, more efficient cars.",
         options: { A: 'Together with', B: 'Instead of', C: 'As well as', D: 'Because of' },
+        options_vn: { A: 'Cùng với', B: 'Thay vì', C: 'Cũng như', D: 'Bởi vì' },
         answer: 'D',
         type: "Giới từ/Liên từ (Preposition/Conjunction)",
         explanation: "Vế sau chỉ kết quả, vế trước chỉ nguyên nhân. 'Because of' (bởi vì) + cụm danh từ là phù hợp nhất để chỉ nguyên nhân.",
@@ -498,6 +517,7 @@ const explanationsData = {
     122: {
         question: "Over the past ten years, Bellworth Medical Clinic ------- Atlan Protection officers for all security needs.",
         options: { A: 'is hiring', B: 'were hiring', C: 'has hired', D: 'was hired' },
+        options_vn: { A: 'đang thuê', B: '(qkd) đang thuê', C: 'đã thuê (htd)', D: 'đã được thuê' },
         answer: 'C',
         type: "Thì của Động từ (Verb Tense)",
         explanation: "Cụm từ 'Over the past ten years' (Trong suốt mười năm qua) là dấu hiệu của thì hiện tại hoàn thành.",
@@ -506,6 +526,7 @@ const explanationsData = {
     123: {
         question: "The driver will make three ------- to deliver the package before it is returned to our warehouse.",
         options: { A: 'attempts', B: 'pursuits', C: 'aims', D: 'experiences' },
+        options_vn: { A: 'nỗ lực', B: 'sự theo đuổi', C: 'mục tiêu', D: 'kinh nghiệm' },
         answer: 'A',
         type: "Từ vựng (Vocabulary)",
         explanation: "Cụm từ 'make an attempt' có nghĩa là 'nỗ lực, cố gắng'.",
@@ -514,6 +535,7 @@ const explanationsData = {
     124: {
         question: "We congratulate all Riverside employees, whose ------- effort has resulted in a 20 percent reduction in waste disposal costs.",
         options: { A: 'collect', B: 'collective', C: 'collects', D: 'collector' },
+        options_vn: { A: '(v) thu thập', B: '(adj) tập thể', C: '(v-s) thu thập', D: '(n) người thu thập' },
         answer: 'B',
         type: "Từ loại (Word Form)",
         explanation: "Sau đại từ quan hệ sở hữu 'whose' và trước danh từ 'effort' cần một tính từ. 'Collective' (tập thể) là tính từ phù hợp.",
@@ -522,6 +544,7 @@ const explanationsData = {
     125: {
         question: "Andrzej Ptak's photography Web site will be available online ------- we have finished organizing and cataloging his work.",
         options: { A: 'how', B: 'once', C: 'so too', D: 'not only' },
+        options_vn: { A: 'làm thế nào', B: 'một khi', C: 'cũng vậy', D: 'không chỉ' },
         answer: 'B',
         type: "Giới từ/Liên từ (Preposition/Conjunction)",
         explanation: "'Once' (một khi) được dùng như một liên từ thời gian, có nghĩa tương tự như 'when' hoặc 'as soon as'.",
@@ -530,6 +553,7 @@ const explanationsData = {
     126: {
         question: "The initial feedback from early buyers of the Sunbell XC2 mobile phone indicates that they found it ------- to use.",
         options: { A: 'conveniences', B: 'conveniently', C: 'convenience', D: 'convenient' },
+        options_vn: { A: '(n-plural) sự tiện lợi', B: '(adv) một cách tiện lợi', C: '(n) sự tiện lợi', D: '(adj) tiện lợi' },
         answer: 'D',
         type: "Cấu trúc (Structure)",
         explanation: "Sau các động từ như find, make, feel... ta dùng cấu trúc V + O + adj. Vì vậy, sau 'found it' cần một tính từ là 'convenient'.",
@@ -538,6 +562,7 @@ const explanationsData = {
     127: {
         question: "------- space in the bathroom was limited, the contractor managed to fit in two sinks and a shower.",
         options: { A: 'Both', B: 'So that', C: 'Whether', D: 'Even though' },
+        options_vn: { A: 'Cả hai', B: 'Để mà', C: 'Liệu rằng', D: 'Mặc dù' },
         answer: 'D',
         type: "Giới từ/Liên từ (Preposition/Conjunction)",
         explanation: "'Even though' (mặc dù) là liên từ chỉ sự nhượng bộ, nối hai mệnh đề có ý nghĩa tương phản.",
@@ -546,6 +571,7 @@ const explanationsData = {
     128: {
         question: "The staff must ------- as much market-research data as possible before planning the advertising campaign.",
         options: { A: 'equip', B: 'compile', C: 'endorse', D: 'compose' },
+        options_vn: { A: 'trang bị', B: 'biên soạn, tổng hợp', C: 'chứng thực', D: 'soạn thảo' },
         answer: 'B',
         type: "Từ vựng (Vocabulary)",
         explanation: "'Compile' có nghĩa là 'biên soạn, tổng hợp', phù hợp với việc thu thập 'dữ liệu nghiên cứu thị trường'.",
@@ -554,6 +580,7 @@ const explanationsData = {
     129: {
         question: "------- a national holiday falls on a Thursday, the Barstow Company allows employees to take off Friday as well.",
         options: { A: 'Even', B: 'For', C: 'Nearly', D: 'Whenever' },
+        options_vn: { A: 'Thậm chí', B: 'Vì / Trong khoảng', C: 'Gần như', D: 'Bất cứ khi nào' },
         answer: 'D',
         type: "Giới từ/Liên từ (Preposition/Conjunction)",
         explanation: "'Whenever' (bất cứ khi nào) dùng để giới thiệu một mệnh đề trạng ngữ chỉ thời gian không xác định, diễn tả một hành động lặp đi lặp lại.",
@@ -562,6 +589,7 @@ const explanationsData = {
     130: {
         question: "------- materials for the advanced Farsi course include an audio CD and a DVD.",
         options: { A: 'Supplementary', B: 'Consequential', C: 'Persistent', D: 'Cooperative' },
+        options_vn: { A: 'Bổ sung', B: 'Là hậu quả của', C: 'Kiên trì', D: 'Hợp tác' },
         answer: 'A',
         type: "Từ vựng (Vocabulary)",
         explanation: "'Supplementary materials' là một cụm từ phổ biến có nghĩa là 'tài liệu bổ sung'.",
@@ -572,6 +600,7 @@ const explanationsData = {
     131: {
         question: "Mr. Trang admits that the first two years of operation were quite -------.",
         options: { A: 'competitive', B: 'potential', C: 'challenging', D: 'rewarding' },
+        options_vn: { A: 'cạnh tranh', B: 'tiềm năng', C: 'thách thức / khó khăn', D: 'bổ ích, đáng giá' },
         answer: 'C',
         type: "Từ vựng (Vocabulary)",
         explanation: "Vế sau có nói 'we didn't do well at first' (ban đầu chúng tôi không làm tốt), do đó từ 'challenging' (thách thức, khó khăn) là phù hợp nhất.",
@@ -580,6 +609,7 @@ const explanationsData = {
     132: {
         question: "\"We didn't do well at first ------- the cuisine is based on unfamiliar herbs and hot flavors.\"",
         options: { A: 'because', B: 'unless', C: 'despite', D: 'besides' },
+        options_vn: { A: 'bởi vì', B: 'trừ khi', C: 'mặc dù', D: 'bên cạnh đó' },
         answer: 'A',
         type: "Liên từ (Conjunction)",
         explanation: "Mệnh đề sau giải thích nguyên nhân cho mệnh đề trước (lý do tại sao không kinh doanh tốt). Do đó, 'because' (vì) là liên từ phù hợp.",
@@ -593,6 +623,12 @@ const explanationsData = {
             C: "This situation was not expected to last so long.", 
             D: "The restaurant will relocate in March." 
         },
+        options_vn: { 
+            A: "Xuất thân từ Huế, anh Trang chuyển đến London năm tuổi cùng gia đình.", 
+            B: "Đặt chỗ tại Trang's Bistro phải được đặt trước một tuần.", 
+            C: "Tình trạng này không được dự kiến sẽ kéo dài quá lâu.", 
+            D: "Nhà hàng sẽ di dời vào tháng ba." 
+        },
         answer: 'B',
         type: "Điền câu (Sentence Insertion)",
         explanation: "Vế trước nói rằng ông Trang đã đúng khi tin rằng món ăn sẽ trở nên phổ biến. Câu (B) 'Đặt chỗ tại Trang's Bistro phải được đặt trước một tuần' là minh chứng rõ nhất cho sự thành công và phổ biến đó.",
@@ -601,6 +637,7 @@ const explanationsData = {
     134: {
         question: "Mr. Trang has just signed another five-year lease, and he is planning ------- the space next year.",
         options: { A: 'renovate', B: 'being renovated', C: 'renovates', D: 'to renovate' },
+        options_vn: { A: '(v-nguyên mẫu) cải tạo', B: 'đang được cải tạo', C: '(v-s) cải tạo', D: '(to-v) để cải tạo' },
         answer: 'D',
         type: "Từ loại (Word Form)",
         explanation: "Sau cấu trúc 'is planning' cần một động từ nguyên mẫu có 'to' (to-infinitive) để chỉ mục đích hoặc kế hoạch. Do đó, 'to renovate' (để cải tạo) là đáp án đúng.",
@@ -609,6 +646,7 @@ const explanationsData = {
     135: {
         question: "Our advanced manufacturing procedures depend on ------- inventory control.",
         options: { A: 'accurate', B: 'seasonal', C: 'expensive', D: 'industrialized' },
+        options_vn: { A: 'chính xác', B: 'theo mùa', C: 'đắt đỏ', D: 'được công nghiệp hóa' },
         answer: 'A',
         type: "Từ vựng (Vocabulary)",
         explanation: "Kiểm soát hàng tồn kho cần phải 'chính xác' (accurate) để quy trình sản xuất có thể phụ thuộc vào nó.",
@@ -617,6 +655,7 @@ const explanationsData = {
     136: {
         question: "Only by maintaining a precise flow of inventory ------- minimize costs and ensure prompt shipments.",
         options: { A: 'is able to', B: 'to be able', C: 'our ability to', D: 'are we able to' },
+        options_vn: { A: 'có thể (đảo ngữ ngôi 3 số ít)', B: 'để có thể', C: 'khả năng của chúng tôi để', D: 'chúng tôi có thể (đảo ngữ)' },
         answer: 'D',
         type: "Đảo ngữ (Inversion)",
         explanation: "Khi các từ phủ định như 'Only' đứng đầu câu thì phải đảo ngữ. Do đó, cấu trúc đúng là 'are we able to' thay vì 'we are able to'.",
@@ -630,6 +669,12 @@ const explanationsData = {
             C: "Unfortunately, some items are currently not in stock.", 
             D: "However, this is not possible when unexpected shortages occur." 
         },
+        options_vn: { 
+            A: "Chúng tôi đã tính toán các chi phí cho bạn.", 
+            B: "Vui lòng cho phép ít nhất hai tuần để giao hàng.", 
+            C: "Thật không may, một số mặt hàng hiện không có trong kho.", 
+            D: "Tuy nhiên, điều này là không thể khi xảy ra tình trạng thiếu hụt bất ngờ." 
+        },
         answer: 'D',
         type: "Điền câu (Sentence Insertion)",
         explanation: "Câu trước mô tả tình huống lý tưởng. Câu (D) dùng 'However' để đưa ra một sự tương phản, nói về tình huống không thể thực hiện được khi có sự thiếu hụt, tạo ra sự liên kết logic.",
@@ -638,6 +683,7 @@ const explanationsData = {
     138: {
         question: "Therefore, the procedures in this manual must always be faithfully -------.",
         options: { A: 'implemented', B: 'reproduced', C: 'corrected', D: 'recorded' },
+        options_vn: { A: 'thực hiện', B: 'sao chép', C: 'sửa chữa', D: 'ghi lại' },
         answer: 'A',
         type: "Từ vựng (Vocabulary)",
         explanation: "'Implemented' (thực hiện) phù hợp với 'procedures' (thủ tục, quy trình). Các quy trình cần được thực hiện một cách trung thực.",
@@ -646,6 +692,7 @@ const explanationsData = {
     139: {
         question: "Congratulations on your recent ------- in Tuchman's Autopay system.",
         options: { A: 'enroll', B: 'enrolled', C: 'enrolls', D: 'enrollment' },
+        options_vn: { A: '(v) đăng ký', B: '(v-ed) đã đăng ký', C: '(v-s) đăng ký', D: '(n) sự đăng ký' },
         answer: 'D',
         type: "Từ loại (Word Form)",
         explanation: "Sau tính từ sở hữu 'your' và tính từ 'recent', cần một danh từ. 'Enrollment' (sự đăng ký) là danh từ phù hợp.",
@@ -659,6 +706,12 @@ const explanationsData = {
             C: "We appreciate our loyal customers.", 
             D: "Take advantage of our special offers." 
         },
+        options_vn: { 
+            A: "Nhân viên thanh toán của chúng tôi rất sẵn lòng phục vụ bạn.", 
+            B: "Bạn sẽ không còn nhận được hóa đơn qua đường bưu điện.", 
+            C: "Chúng tôi đánh giá cao những khách hàng trung thành của mình.", 
+            D: "Hãy tận dụng các ưu đãi đặc biệt của chúng tôi." 
+        },
         answer: 'B',
         type: "Điền câu (Sentence Insertion)",
         explanation: "Câu sau nói rằng sao kê sẽ được gửi 'electronically' (bằng điện tử). Do đó, câu (B) 'Bạn sẽ không còn nhận được hóa đơn qua đường bưu điện nữa' là sự bổ sung hợp lý nhất.",
@@ -667,6 +720,7 @@ const explanationsData = {
     141: {
         question: "You may ------- the account from which the funds are withdrawn.",
         options: { A: 'own', B: 'settle', C: 'open', D: 'change' },
+        options_vn: { A: 'sở hữu', B: 'giải quyết', C: 'mở', D: 'thay đổi' },
         answer: 'D',
         type: "Từ vựng (Vocabulary)",
         explanation: "Ngữ cảnh đề cập đến việc 'nhập thông tin tài khoản thay thế', vì vậy động từ 'change' (thay đổi) là phù hợp nhất.",
@@ -675,6 +729,7 @@ const explanationsData = {
     142: {
         question: "Please contact customer service if you have ------- using Tuchman's Autopay.",
         options: { A: 'any difficulties', B: 'more difficult', C: 'the difficulty', D: 'too difficult' },
+        options_vn: { A: 'bất kỳ khó khăn nào', B: 'khó khăn hơn', C: 'sự khó khăn (xác định)', D: 'quá khó khăn' },
         answer: 'A',
         type: "Từ loại (Word Form) & Cấu trúc",
         explanation: "Cấu trúc 'have difficulty/difficulties (in) doing something' có nghĩa là 'gặp khó khăn khi làm gì'. Ở đây, 'any difficulties' là phù hợp nhất.",
@@ -683,6 +738,7 @@ const explanationsData = {
     143: {
         question: "The Irwin Neighbourhood Association is proud to ------- a summer event called Park Fest...",
         options: { A: 'announce', B: 'admit', C: 'recall', D: 'state' },
+        options_vn: { A: 'thông báo', B: 'thừa nhận', C: 'nhắc lại', D: 'phát biểu' },
         answer: 'A',
         type: "Từ vựng (Vocabulary)",
         explanation: "Cụm từ 'announce an event' (thông báo một sự kiện) là cách diễn đạt phổ biến và phù hợp nhất với ngữ cảnh.",
@@ -691,6 +747,7 @@ const explanationsData = {
     144: {
         question: "The proceeds will ------- go towards a park enhancement project.",
         options: { A: 'entirely', B: 'often', C: 'primarily', D: 'together' },
+        options_vn: { A: 'hoàn toàn', B: 'thường xuyên', C: 'chủ yếu', D: 'cùng nhau' },
         answer: 'C',
         type: "Từ vựng (Vocabulary)",
         explanation: "'Primarily' có nghĩa là 'chủ yếu, chính yếu'. Câu sau giải thích tiền được chia ra (một phần cho cảnh quan, một phần nhỏ hơn cho quảng cáo), vì vậy 'chủ yếu' là từ hợp lý nhất.",
@@ -699,6 +756,7 @@ const explanationsData = {
     145: {
         question: "This event ------- to be great fun.",
         options: { A: 'promise', B: 'promises', C: 'promising', D: 'promised' },
+        options_vn: { A: '(v-nguyên mẫu) hứa hẹn', B: '(v-s) hứa hẹn', C: '(adj) đầy hứa hẹn', D: '(v-ed) đã hứa hẹn' },
         answer: 'B',
         type: "Thì và Sự hòa hợp (Tense & Agreement)",
         explanation: "Chủ ngữ 'This event' là danh từ số ít, do đó động từ ở thì hiện tại đơn phải thêm 's'. 'Promises' (hứa hẹn) là động từ phù hợp.",
@@ -712,6 +770,12 @@ const explanationsData = {
             C: "We hope you will be able to attend.", 
             D: "Fern Park attracts over 20,000 visitors a year." 
         },
+        options_vn: { 
+            A: "Bạn có thể giúp đỡ bằng cách vứt bỏ tất cả rác.", 
+            B: "Công viên được thành lập 75 năm trước.", 
+            C: "Chúng tôi hy vọng bạn sẽ có thể tham dự.", 
+            D: "Công viên Fern thu hút hơn 20.000 du khách mỗi năm." 
+        },
         answer: 'C',
         type: "Điền câu (Sentence Insertion)",
         explanation: "Sau khi mô tả và quảng bá về sự kiện, câu kết hợp lý nhất là một lời mời hoặc một lời bày tỏ hy vọng người nhận sẽ tham gia. Câu (C) thể hiện điều đó.",
@@ -719,9 +783,11 @@ const explanationsData = {
     },
 
     //--- PART 7 ---
+    // (Lưu ý: Phần giải thích Part 7 trong file PDF không đầy đủ, đây là phần tổng hợp dựa trên các chi tiết có sẵn)
     147: {
         question: "Why did Ms. Constantini fill out the form?",
         options: { A: 'To authorize a charge to her credit card', B: 'To be assigned to a new company division', C: 'To request a document renewal', D: 'To report lost equipment' },
+        options_vn: { A: 'Để ủy quyền một khoản phí vào thẻ tín dụng của cô ấy', B: 'Để được chỉ định vào một bộ phận mới của công ty', C: 'Để yêu cầu gia hạn/cấp lại tài liệu', D: 'Để báo cáo thiết bị bị mất' },
         answer: 'C',
         type: "Đọc hiểu chi tiết",
         explanation: "Bà Constantini điền vào mẫu đơn để nhận một huy hiệu nhân viên mới vì huy hiệu cũ của bà đã bị mất. Đây là một yêu cầu gia hạn/cấp lại tài liệu (document renewal).",
@@ -730,6 +796,7 @@ const explanationsData = {
     148: {
         question: "What instructions are included?",
         options: { A: 'Where to send the form', B: 'How to complete the form', C: 'When to submit the application', D: 'What documentation to attach' },
+        options_vn: { A: 'Nơi gửi biểu mẫu', B: 'Cách hoàn thành biểu mẫu', C: 'Khi nào nộp đơn', D: 'Tài liệu nào cần đính kèm' },
         answer: 'B',
         type: "Đọc hiểu chi tiết",
         explanation: "Bài đọc có các hướng dẫn như 'Write in pen only' (Chỉ viết bằng bút mực) và 'Please PRINT clearly' (Vui lòng VIẾT IN HOA rõ ràng), đây là những hướng dẫn về cách hoàn thành biểu mẫu.",
@@ -738,6 +805,7 @@ const explanationsData = {
     149: {
         question: "What is stated about The Golden Lagoon?",
         options: { A: 'It is closed on Sundays.', B: 'It regularly has positions available.', C: 'It has been in business for over a decade.', D: 'It was bought by Ms. Kincaid eighteen years ago.' },
+        options_vn: { A: 'Nó đóng cửa vào Chủ nhật.', B: 'Nó thường xuyên có vị trí tuyển dụng.', C: 'Nó đã kinh doanh hơn một thập kỷ.', D: 'Nó được bà Kincaid mua lại mười tám năm trước.' },
         answer: 'C',
         type: "Đọc hiểu chi tiết",
         explanation: "Bài quảng cáo nói rằng nhà hàng 'has been serving Montego Bay for 18 years', tức là đã hoạt động 18 năm, nghĩa là 'hơn một thập kỷ' (over a decade).",
@@ -746,6 +814,7 @@ const explanationsData = {
     150: {
         question: "What is mentioned about job applicants?",
         options: { A: 'They will be working on a fixed schedule.', B: 'They must go to the restaurant to file their job request.', C: 'They must have worked in a restaurant before.', D: 'They will learn how to cook Jamaican dishes.' },
+        options_vn: { A: 'Họ sẽ làm việc theo một lịch trình cố định.', B: 'Họ phải đến nhà hàng để nộp đơn xin việc.', C: 'Họ phải đã từng làm việc trong một nhà hàng trước đây.', D: 'Họ sẽ học cách nấu các món ăn Jamaica.' },
         answer: 'B',
         type: "Đọc hiểu chi tiết",
         explanation: "Bài quảng cáo yêu cầu ứng viên 'Apply in person', có nghĩa là 'Nộp đơn trực tiếp', tức là họ phải đến nhà hàng để nộp hồ sơ.",
@@ -754,6 +823,7 @@ const explanationsData = {
     151: {
         question: "What will happen tomorrow?",
         options: { A: 'New computers will arrive.', B: 'Maintenance work will be done.', C: 'A new employment policy will take effect.', D: 'The location of a training session will be announced.' },
+        options_vn: { A: 'Máy tính mới sẽ đến.', B: 'Công việc bảo trì sẽ được thực hiện.', C: 'Một chính sách tuyển dụng mới sẽ có hiệu lực.', D: 'Địa điểm của một buổi đào tạo sẽ được công bố.' },
         answer: 'B',
         type: "Đọc hiểu chi tiết",
         explanation: "Email thông báo rằng 'the water in the Tolliver building will be temporarily shut off tomorrow while repairs are completed', tức là sẽ có công việc bảo trì (maintenance work) được thực hiện.",
@@ -762,6 +832,7 @@ const explanationsData = {
     152: {
         question: "What will employees NOT be able to do in the Tolliver building in the morning?",
         options: { A: 'Use new software', B: 'Drink bottled water', C: 'Purchase food items', D: 'Walk through the lobby' },
+        options_vn: { A: 'Sử dụng phần mềm mới', B: 'Uống nước đóng chai', C: 'Mua các mặt hàng thực phẩm', D: 'Đi qua sảnh' },
         answer: 'C',
         type: "Đọc hiểu chi tiết",
         explanation: "Email nói rằng 'The cafeteria will remain closed until the water has been turned on again', nghĩa là nhân viên sẽ không thể mua đồ ăn (purchase food items) vào buổi sáng.",
@@ -770,6 +841,7 @@ const explanationsData = {
     153: {
         question: "What will Ms. Fernandez do next Monday?",
         options: { A: 'Teach a training course', B: 'Meet an instructor', C: 'Go on a vacation', D: 'Apply for a job' },
+        options_vn: { A: 'Dạy một khóa đào tạo', B: 'Gặp một giảng viên', C: 'Đi nghỉ mát', D: 'Xin việc' },
         answer: 'A',
         type: "Đọc hiểu chi tiết",
         explanation: "Nicole nói rằng văn phòng Amherst 'requested a training session' và cô ấy là 'a substitute' (người thay thế) cho giảng viên. Do đó, cô ấy sẽ dạy một khóa đào tạo.",
@@ -778,6 +850,7 @@ const explanationsData = {
     154: {
         question: "At 12:27 P.M., what does Ms. Fernandez mean when she writes, 'Not on such short notice'?",
         options: { A: 'She will not arrive on time.', B: 'She will not travel by plane.', C: 'She cannot accept an invitation.', D: 'She cannot make a payment.' },
+        options_vn: { A: 'Cô ấy sẽ không đến đúng giờ.', B: 'Cô ấy sẽ không đi bằng máy bay.', C: 'Cô ấy không thể chấp nhận lời mời.', D: 'Cô ấy không thể thực hiện thanh toán.' },
         answer: 'B',
         type: "Suy luận",
         explanation: "Câu hỏi trước đó của Tad là 'Did you manage to book a flight?' (Bạn đã đặt được vé máy bay chưa?). Câu trả lời 'Not on such short notice' (Không được vì quá gấp) ngụ ý rằng cô ấy không thể đi bằng máy bay.",
@@ -786,6 +859,7 @@ const explanationsData = {
     155: {
         question: "What is the purpose of the e-mail?",
         options: { A: 'To thank an employee', B: 'To provide job information', C: 'To explain a new policy', D: 'To announce a special sales event' },
+        options_vn: { A: 'Để cảm ơn một nhân viên', B: 'Để cung cấp thông tin công việc', C: 'Để giải thích một chính sách mới', D: 'Để thông báo một sự kiện bán hàng đặc biệt' },
         answer: 'B',
         type: "Đọc hiểu mục đích chính",
         explanation: "Email này chứa các thông tin chào mừng nhân viên mới, thông báo về buổi đào tạo, lịch làm việc, và các quyền lợi. Do đó, mục đích chính là để cung cấp thông tin công việc.",
@@ -794,6 +868,7 @@ const explanationsData = {
     156: {
         question: "According to Ms. Satter, what might happen after two weeks?",
         options: { A: "Mr. Taera's work schedule might change.", B: "Mr. Taera might be transferred to another location.", C: "The company might train Mr. Taera for a new responsibility.", D: "The company might mail Mr. Taera new benefits information." },
+        options_vn: { A: "Lịch làm việc của ông Taera có thể thay đổi.", B: "Ông Taera có thể được chuyển đến một địa điểm khác.", C: "Công ty có thể đào tạo ông Taera cho một trách nhiệm mới.", D: "Công ty có thể gửi cho ông Taera thông tin về các quyền lợi mới." },
         answer: 'A',
         type: "Đọc hiểu chi tiết",
         explanation: "Email nêu rõ: 'After training, you might be assigned to a different work shift', có nghĩa là lịch làm việc của ông Taera có thể thay đổi.",
@@ -802,6 +877,7 @@ const explanationsData = {
     157: {
         question: "What did Ms. Satter send with the e-mail?",
         options: { A: 'A store map', B: 'An events calendar', C: 'A list of benefits', D: 'An employment agreement' },
+        options_vn: { A: 'Một bản đồ cửa hàng', B: 'Một lịch sự kiện', C: 'Một danh sách các quyền lợi', D: 'Một thỏa thuận lao động' },
         answer: 'D',
         type: "Đọc hiểu chi tiết",
         explanation: "Email yêu cầu ông Taera 'Please sign and return the attached document indicating your willingness to accept the position...'. Đây chính là một thỏa thuận/hợp đồng lao động (employment agreement).",
@@ -810,6 +886,7 @@ const explanationsData = {
     158: {
         question: "What is one purpose of the press release?",
         options: { A: 'To advertise an upcoming art show', B: 'To publicize paintings available for purchase', C: 'To profile an art gallery owner', D: 'To announce the opening of a new museum' },
+        options_vn: { A: 'Để quảng cáo một buổi triển lãm nghệ thuật sắp tới', B: 'Để công bố các bức tranh có sẵn để mua', C: 'Để giới thiệu hồ sơ một chủ phòng trưng bày nghệ thuật', D: 'Để thông báo việc mở một bảo tàng mới' },
         answer: 'A',
         type: "Đọc hiểu mục đích chính",
         explanation: "Thông cáo báo chí này thông báo về 'New Exhibition' (Triển lãm mới) tên là Deep Waters, sẽ khai mạc vào ngày 15 tháng 6. Mục đích là để quảng cáo cho buổi triển lãm nghệ thuật sắp tới.",
@@ -818,6 +895,7 @@ const explanationsData = {
     159: {
         question: "Who is Mr. Bernstein?",
         options: { A: 'An art critic', B: 'A museum director', C: 'A public relations specialist', D: 'An artist' },
+        options_vn: { A: 'Một nhà phê bình nghệ thuật', B: 'Một giám đốc bảo tàng', C: 'Một chuyên gia quan hệ công chúng', D: 'Một nghệ sĩ' },
         answer: 'D',
         type: "Đọc hiểu chi tiết",
         explanation: "Bài viết mô tả ông Harold Bernstein là một 'critically acclaimed oil painter', tức là một họa sĩ sơn dầu. Vậy ông là một nghệ sĩ (artist).",
@@ -826,6 +904,7 @@ const explanationsData = {
     160: {
         question: "What is implied about the exhibition in Melbourne?",
         options: { A: 'It will be open to the public in the evenings only.', B: 'It will include more paintings than the exhibition in Sydney will.', C: 'It will feature demonstrations of painting techniques by artists.', D: 'It will include paintings of landscapes in addition to paintings of oceans.' },
+        options_vn: { A: 'Nó sẽ chỉ mở cửa cho công chúng vào buổi tối.', B: 'Nó sẽ bao gồm nhiều bức tranh hơn triển lãm ở Sydney.', C: 'Nó sẽ có các buổi trình diễn kỹ thuật vẽ của các nghệ sĩ.', D: 'Nó sẽ bao gồm các bức tranh phong cảnh ngoài các bức tranh về đại dương.' },
         answer: 'B',
         type: "Suy luận",
         explanation: "Bài viết nói rằng triển lãm ở Melbourne sẽ có thêm 'ocean-themed paintings from Melbourne artists will be added to the collection'. Điều này ngụ ý rằng tổng số bức tranh ở Melbourne sẽ nhiều hơn ở Sydney.",
@@ -834,6 +913,7 @@ const explanationsData = {
     161: {
         question: "What is the purpose of the e-mail?",
         options: { A: 'To report missing documents', B: 'To inquire about building costs', C: 'To confirm receipt of materials', D: 'To request additional photographs' },
+        options_vn: { A: 'Để báo cáo tài liệu bị thiếu', B: 'Để hỏi về chi phí xây dựng', C: 'Để xác nhận đã nhận tài liệu', D: 'Để yêu cầu thêm ảnh' },
         answer: 'C',
         type: "Đọc hiểu mục đích chính",
         explanation: "Email bắt đầu bằng 'Thank you for entering...' và câu 'Today we received your project...'. Điều này cho thấy mục đích chính là để xác nhận đã nhận được tài liệu dự thi.",
@@ -842,6 +922,7 @@ const explanationsData = {
     162: {
         question: "What is Ms. Rosinsky advised to do online?",
         options: { A: 'Read the contest rules', B: 'Obtain a map and directions', C: 'Update her contact information', D: 'Track the progress of her submission' },
+        options_vn: { A: 'Đọc quy tắc cuộc thi', B: 'Lấy bản đồ và chỉ đường', C: 'Cập nhật thông tin liên lạc của cô ấy', D: 'Theo dõi tiến trình bài dự thi của cô ấy' },
         answer: 'D',
         type: "Đọc hiểu chi tiết",
         explanation: "Email hướng dẫn: 'You will be able to check on the status of your entry via the \"Submissions Being Processed\" link in our Web site...'. Điều này có nghĩa là cô ấy có thể theo dõi tiến trình bài dự thi của mình.",
@@ -850,6 +931,7 @@ const explanationsData = {
     163: {
         question: "In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong? \"Please use it when you contact us regarding your entry.\"",
         options: { A: '[1]', B: '[2]', C: '[3]', D: '[4]' },
+        options_vn: { A: '[1]', B: '[2]', C: '[3]', D: '[4]' },
         answer: 'B',
         type: "Điền câu (Sentence Insertion)",
         explanation: "Câu cần điền nói về việc 'sử dụng nó (it)' khi liên lạc. 'Nó' ở đây chính là mã số 'entry number P1298' được đề cập ngay trước vị trí [2]. Do đó, vị trí [2] là hợp lý nhất.",
@@ -858,6 +940,7 @@ const explanationsData = {
     164: {
         question: "Why was the article written?",
         options: { A: 'To profile the career of a prominent lawyer', B: 'To promote legal services', C: 'To discuss the joining of two firms', D: "To announce a firm's relocation" },
+        options_vn: { A: 'Để giới thiệu sự nghiệp của một luật sư nổi tiếng', B: 'Để quảng bá dịch vụ pháp lý', C: 'Để thảo luận về việc hợp nhất hai công ty', D: 'Để thông báo việc di dời của một công ty' },
         answer: 'C',
         type: "Đọc hiểu mục đích chính",
         explanation: "Bài báo thông báo rằng công ty luật Warner and Arnes đang 'merging with' (sáp nhập với) công ty luật Hamilton Jones. Do đó, mục đích là để thảo luận về việc hợp nhất hai công ty.",
@@ -866,6 +949,7 @@ const explanationsData = {
     165: {
         question: "What does Warner, Hamilton, and Associates plan to do?",
         options: { A: 'Hire additional lawyers', B: 'Expand to a third city', C: 'Change its leadership', D: 'Close its Philadelphia office' },
+        options_vn: { A: 'Thuê thêm luật sư', B: 'Mở rộng sang thành phố thứ ba', C: 'Thay đổi ban lãnh đạo', D: 'Đóng cửa văn phòng ở Philadelphia' },
         answer: 'B',
         type: "Đọc hiểu chi tiết",
         explanation: "Bài báo trích lời bà Warner: '...expect to open yet another office in Hartford within the next twelve months.' Hartford sẽ là thành phố thứ ba sau Boston và Philadelphia. Do đó, họ có kế hoạch mở rộng sang thành phố thứ ba.",
@@ -874,6 +958,7 @@ const explanationsData = {
     166: {
         question: "What is suggested about Ms. Warner?",
         options: { A: 'She is based in Hartford.', B: 'She plans to retire soon.', C: 'She sometimes offers free legal counsel.', D: 'She is well-known nationally.' },
+        options_vn: { A: 'Bà ấy làm việc tại Hartford.', B: 'Bà ấy dự định nghỉ hưu sớm.', C: 'Bà ấy thỉnh thoảng tư vấn pháp lý miễn phí.', D: 'Bà ấy nổi tiếng toàn quốc.' },
         answer: 'D',
         type: "Suy luận",
         explanation: "Bài báo nói rằng bà Warner đã thu hút sự chú ý 'through her representation of clients across the country in prominent cases...'. Điều này cho thấy bà nổi tiếng trên toàn quốc.",
@@ -882,6 +967,7 @@ const explanationsData = {
     167: {
         question: "The word 'seamless' in paragraph 4, line 4, is closest in meaning to",
         options: { A: 'in a single piece', B: 'without problems', C: 'in close range', D: 'without hurry' },
+        options_vn: { A: 'trong một khối duy nhất', B: 'không có vấn đề', C: 'ở cự ly gần', D: 'không vội vàng' },
         answer: 'B',
         type: "Từ vựng (Vocabulary)",
         explanation: "'Seamless transition' có nghĩa là một sự chuyển đổi liền mạch, suôn sẻ, không gặp vấn đề. Do đó, 'without problems' là từ đồng nghĩa gần nhất.",
@@ -890,6 +976,7 @@ const explanationsData = {
     168: {
         question: "What is implied about Delicatessen Magazine?",
         options: { A: 'It plans to merge with another magazine.', B: 'It gives discounted subscriptions to staff.', C: 'It relies on advertisements for funding.', D: 'It offers long-term contracts to writers.' },
+        options_vn: { A: 'Nó dự định sáp nhập với một tạp chí khác.', B: 'Nó giảm giá đăng ký cho nhân viên.', C: 'Nó dựa vào quảng cáo để có kinh phí.', D: 'Nó cung cấp hợp đồng dài hạn cho các nhà văn.' },
         answer: 'C',
         type: "Suy luận",
         explanation: "Email nói rằng 'a major advertiser canceled their contract' và kết quả là họ 'will have to reduce the number of pages' vì 'do not have enough money without these ads'. Điều này ngụ ý rằng tạp chí phụ thuộc vào quảng cáo để có kinh phí.",
@@ -898,6 +985,7 @@ const explanationsData = {
     169: {
         question: "How would Ms. Bellandini most likely revise her article?",
         options: { A: 'By making it shorter', B: 'By changing the topic', C: 'By adding more information', D: 'By including more images of food' },
+        options_vn: { A: 'Bằng cách làm cho nó ngắn hơn', B: 'Bằng cách thay đổi chủ đề', C: 'Bằng cách thêm thông tin', D: 'Bằng cách bao gồm nhiều hình ảnh về thực phẩm' },
         answer: 'A',
         type: "Đọc hiểu chi tiết",
         explanation: "Ông McLaren nói rằng bài viết của bà 'will need to be cut by about thirty percent' để vừa với số báo mỏng hơn. Do đó, bà sẽ phải sửa lại bài viết bằng cách làm cho nó ngắn hơn.",
@@ -906,6 +994,7 @@ const explanationsData = {
     170: {
         question: "What does Mr. McLaren NOT suggest to Ms. Bellandini?",
         options: { A: 'Her previous articles were well liked.', B: 'She should submit her article to another magazine.', C: 'Her article might not be published in full at a later date.', D: 'She should notify him of her decision.' },
+        options_vn: { A: 'Các bài viết trước của cô ấy đã được yêu thích.', B: 'Cô ấy nên nộp bài viết của mình cho một tạp chí khác.', C: 'Bài viết của cô ấy có thể không được xuất bản đầy đủ vào một ngày sau đó.', D: 'Cô ấy nên thông báo cho anh ấy về quyết định của mình.' },
         answer: 'B',
         type: "Đọc hiểu chi tiết (Loại trừ)",
         explanation: "Ông McLaren có nói về các bài viết trước của bà (A), khả năng bài viết không được xuất bản sau này (C), và yêu cầu bà cho biết quyết định (D). Ông không hề đề nghị bà gửi bài viết cho một tạp chí khác.",
@@ -914,6 +1003,7 @@ const explanationsData = {
     171: {
         question: "In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong? \"Of course, this is your choice, and I will respect whatever decision you make.\"",
         options: { A: '[1]', B: '[2]', C: '[3]', D: '[4]' },
+        options_vn: { A: '[1]', B: '[2]', C: '[3]', D: '[4]' },
         answer: 'D',
         type: "Điền câu (Sentence Insertion)",
         explanation: "Câu này thể hiện sự tôn trọng quyết định của bà Bellandini. Nó nên được đặt sau khi ông McLaren đã trình bày tất cả các lựa chọn và rủi ro, ngay trước khi yêu cầu bà cho biết quyết định cuối cùng. Vị trí [4] là hợp lý nhất.",
@@ -922,6 +1012,7 @@ const explanationsData = {
     172: {
         question: "What is suggested about the company Ms. Chichester works for?",
         options: { A: 'It currently has no large-sized shirts in stock.', B: 'It has filled an order for Mr. Gerew before.', C: 'it offers discounts on large orders.', D: 'It is open every evening.' },
+        options_vn: { A: 'Nó hiện không có áo cỡ lớn trong kho.', B: 'Nó đã hoàn thành một đơn hàng cho ông Gerew trước đây.', C: 'Nó giảm giá cho các đơn hàng lớn.', D: 'Nó mở cửa vào mỗi buổi tối.' },
         answer: 'B',
         type: "Suy luận",
         explanation: "Ông Gerew nói 'order another 10 shirts' (đặt thêm 10 áo) và bà Chichester nói 'please charge the credit card you have on file for us' (vui lòng tính phí vào thẻ tín dụng bạn đã lưu cho chúng tôi). Điều này cho thấy họ đã từng giao dịch trước đây.",
@@ -930,6 +1021,7 @@ const explanationsData = {
     173: {
         question: "Why is Mr. Gerew ordering new shirts?",
         options: { A: 'Additional staff members have been hired.', B: 'More were sold than had been anticipated.', C: "The company's logo has been changed.", D: 'The style currently in use has become outdated.' },
+        options_vn: { A: 'Các nhân viên mới đã được tuyển dụng.', B: 'Nhiều áo đã được bán hơn dự kiến.', C: 'Logo của công ty đã được thay đổi.', D: 'Kiểu dáng hiện tại đã trở nên lỗi thời.' },
         answer: 'A',
         type: "Suy luận",
         explanation: "Ông Gerew nói 'we have employees starting this Friday' (chúng tôi có nhân viên bắt đầu làm việc vào thứ Sáu này). Đây là lý do ông cần áo gấp cho nhân viên mới.",
@@ -938,6 +1030,7 @@ const explanationsData = {
     174: {
         question: "At 1:38 P.M., what does Mr. Gerew mean when he writes, \"I guess it can't be helped\"?",
         options: { A: 'He will pay a $75 rush-order fee.', B: 'He will ask his assistant to help him.', C: 'He will meet Ms. Chichester at 1:00 P.M.', D: 'He will select the standard production option.' },
+        options_vn: { A: 'Ông ấy sẽ trả phí đặt hàng gấp 75 đô la.', B: 'Ông ấy sẽ nhờ trợ lý giúp đỡ.', C: 'Ông ấy sẽ gặp bà Chichester lúc 1:00 chiều.', D: 'Ông ấy sẽ chọn phương án sản xuất tiêu chuẩn.' },
         answer: 'A',
         type: "Suy luận",
         explanation: "Câu này được nói sau khi bà Chichester đề cập đến phí đặt hàng gấp $75 và lựa chọn thay thế (nhận hàng vào tuần sau). Vì ông cần áo vào thứ Sáu, ông chấp nhận không thể tránh được phí gấp, tức là ông sẽ trả phí đó.",
@@ -946,6 +1039,7 @@ const explanationsData = {
     175: {
         question: "What will Mr. Gerew likely do next?",
         options: { A: 'Provide payment information to Ms. Chichester', B: 'Schedule a meeting with Ms. Chichester', C: 'Send an e-mail to Ms. Chichester', D: "Fix Ms. Chichester's computer" },
+        options_vn: { A: 'Cung cấp thông tin thanh toán cho bà Chichester', B: 'Lên lịch một cuộc họp với bà Chichester', C: 'Gửi một email cho bà Chichester', D: 'Sửa máy tính của bà Chichester' },
         answer: 'C',
         type: "Đọc hiểu chi tiết",
         explanation: "Bà Chichester đã yêu cầu: 'Could you please e-mail me your logo again?'. Ông Gerew trả lời 'Will do' (Sẽ làm ngay). Do đó, việc tiếp theo ông sẽ làm là gửi email logo cho bà Chichester.",
@@ -954,6 +1048,7 @@ const explanationsData = {
     176: {
         question: "Why are parking areas being closed?",
         options: { A: 'They are being resurfaced.', B: 'They are being reserved for guests.', C: 'An outdoor event will be held on them.', D: 'A construction project is scheduled to begin.' },
+        options_vn: { A: 'Chúng đang được làm lại bề mặt.', B: 'Chúng được dành cho khách.', C: 'Một sự kiện ngoài trời sẽ được tổ chức ở đó.', D: 'Một dự án xây dựng dự kiến sẽ bắt đầu.' },
         answer: 'D',
         type: "Đọc hiểu chi tiết",
         explanation: "Email nêu rõ lý do là 'crews will begin construction on the new Colton Medical Nutrition Center on June 18'. Do đó, các bãi đậu xe bị đóng cửa vì một dự án xây dựng sắp bắt đầu.",
@@ -962,6 +1057,7 @@ const explanationsData = {
     177: {
         question: "According to the e-mail, who will receive a temporary parking sticker?",
         options: { A: 'Anyone who is visiting the medical campus', B: 'Anyone who usually parks in areas F and G', C: 'Anyone who usually parks in the parking garage', D: 'Anyone who requests one from the maintenance office' },
+        options_vn: { A: 'Bất kỳ ai đến thăm khuôn viên y tế', B: 'Bất kỳ ai thường đỗ xe ở khu F và G', C: 'Bất kỳ ai thường đỗ xe trong nhà để xe', D: 'Bất kỳ ai yêu cầu một cái từ văn phòng bảo trì' },
         answer: 'B',
         type: "Đọc hiểu chi tiết",
         explanation: "Email nói rằng 'Staff currently assigned to park in areas F and G will be given temporary \"guest\" parking stickers'.",
@@ -970,6 +1066,7 @@ const explanationsData = {
     178: {
         question: "Why should staff members limit their visits to the security building?",
         options: { A: 'So that visitors can enjoy the pond', B: 'So that fewer cars will be in the area', C: 'So that security staff can monitor traffic', D: 'So that visitors can get to the Information Center' },
+        options_vn: { A: 'Để du khách có thể thưởng thức ao', B: 'Để có ít xe hơn trong khu vực', C: 'Để nhân viên an ninh có thể giám sát giao thông', D: 'Để du khách có thể đến Trung tâm Thông tin' },
         answer: 'B',
         type: "Đọc hiểu chi tiết",
         explanation: "Email giải thích: 'To help eliminate excessive traffic, please visit those places only when absolutely necessary.' Mục đích là để giảm bớt lưu lượng xe cộ trong khu vực.",
@@ -978,6 +1075,7 @@ const explanationsData = {
     179: {
         question: "What changed after the e-mail was sent on June 10?",
         options: { A: 'Which parking areas are being closed', B: 'Where staff should park their vehicles', C: 'Where parking stickers should be displayed', D: 'How long some parking areas will be closed' },
+        options_vn: { A: 'Khu vực đỗ xe nào đang bị đóng', B: 'Nhân viên nên đỗ xe ở đâu', C: 'Nhãn dán đỗ xe nên được hiển thị ở đâu', D: 'Một số khu vực đỗ xe sẽ bị đóng trong bao lâu' },
         answer: 'D',
         type: "Đối chiếu thông tin",
         explanation: "Email ngày 10/6 nói rằng bãi F & G sẽ đóng cửa 'until August 20'. Tuy nhiên, thông báo sau đó lại ghi là 'CLOSED UNTIL SEPTEMBER 10'. Như vậy, thời gian đóng cửa đã thay đổi.",
@@ -986,6 +1084,7 @@ const explanationsData = {
     180: {
         question: "According to the notice, why might a staff member's car be towed?",
         options: { A: 'If it is parked near a walkway', B: 'If it is parked in the visitors\' area', C: 'If it does not display a parking sticker', D: 'If it is parked in the garage after August 20' },
+        options_vn: { A: 'Nếu nó đỗ gần lối đi bộ', B: 'Nếu nó đỗ trong khu vực của khách', C: 'Nếu nó không hiển thị nhãn dán đỗ xe', D: 'Nếu nó đỗ trong nhà để xe sau ngày 20 tháng 8' },
         answer: 'A',
         type: "Đọc hiểu chi tiết",
         explanation: "Thông báo cảnh báo: 'Cars will be immediately towed away if parked next to pedestrian areas, including all walkways...'.",
@@ -994,6 +1093,7 @@ const explanationsData = {
     181: {
         question: "What type of business is Woodruff's?",
         options: { A: 'A computer software company', B: 'A clothing store', C: 'A mobile-phone service provider', D: 'A consulting firm' },
+        options_vn: { A: 'Một công ty phần mềm máy tính', B: 'Một cửa hàng quần áo', C: 'Một nhà cung cấp dịch vụ điện thoại di động', D: 'Một công ty tư vấn' },
         answer: 'B',
         type: "Suy luận",
         explanation: "Các chi tiết trong khảo sát như 'items in my size' (các mặt hàng theo cỡ của tôi) và 'dressing rooms' (phòng thay đồ) cho thấy đây là một cửa hàng quần áo.",
@@ -1002,6 +1102,7 @@ const explanationsData = {
     182: {
         question: "With what statement about Woodruff's would Ms. Torres most likely agree?",
         options: { A: 'It is located close to her home.', B: 'It has a large staff.', C: 'It is relatively inexpensive.', D: 'It is open later than other businesses.' },
+        options_vn: { A: 'Nó nằm gần nhà cô ấy.', B: 'Nó có đội ngũ nhân viên lớn.', C: 'Nó tương đối rẻ.', D: 'Nó mở cửa muộn hơn các doanh nghiệp khác.' },
         answer: 'C',
         type: "Suy luận",
         explanation: "Bà Torres đánh giá 3/5 (Không có ý kiến) cho mục 'The items were priced well compared to other stores'. Mặc dù không hoàn toàn đồng ý, đây là lựa chọn gần nhất và hợp lý hơn các lựa chọn còn lại, cho thấy giá cả không đắt.",
@@ -1010,6 +1111,7 @@ const explanationsData = {
     183: {
         question: "In the e-mail, the word 'appreciate' in paragraph 1, line 2, is closest in meaning to",
         options: { A: 'increase', B: 'order', C: 'understand', D: 'value' },
+        options_vn: { A: 'tăng', B: 'đặt hàng', C: 'hiểu', D: 'trân trọng, đánh giá cao' },
         answer: 'D',
         type: "Từ vựng (Vocabulary)",
         explanation: "'Appreciate' trong ngữ cảnh này có nghĩa là 'trân trọng, đánh giá cao'. 'Value' là từ đồng nghĩa gần nhất.",
@@ -1018,6 +1120,7 @@ const explanationsData = {
     184: {
         question: "What most likely is Woodruff's planning to do?",
         options: { A: 'Teach its employees to be more friendly and helpful to customers', B: 'Make the workplace cleaner and more organized', C: 'Open an additional location in Clarksville', D: 'Offer a discount voucher to all customers who complete a survey' },
+        options_vn: { A: 'Dạy nhân viên của mình thân thiện và hữu ích hơn với khách hàng', B: 'Làm cho nơi làm việc sạch sẽ và ngăn nắp hơn', C: 'Mở một địa điểm khác ở Clarksville', D: 'Tặng phiếu giảm giá cho tất cả khách hàng hoàn thành khảo sát' },
         answer: 'A',
         type: "Suy luận",
         explanation: "Email thừa nhận rằng nhiều khách hàng, bao gồm cả bà Torres (đánh giá 2/5), không hài lòng về 'salespeople' (nhân viên bán hàng). Sau đó email nói 'We plan to improve this area with training soon'. Do đó, họ sẽ đào tạo nhân viên để thân thiện và hữu ích hơn.",
@@ -1026,6 +1129,7 @@ const explanationsData = {
     185: {
         question: "What is suggested about the survey?",
         options: { A: 'It has been taken by many customers.', B: 'It was created by Ms. Passante.', C: 'It is accessible on the company Web site.', D: 'It has been in use for one year.' },
+        options_vn: { A: 'Nó đã được thực hiện bởi nhiều khách hàng.', B: 'Nó được tạo ra bởi bà Passante.', C: 'Nó có thể truy cập trên trang web của công ty.', D: 'Nó đã được sử dụng trong một năm.' },
         answer: 'A',
         type: "Suy luận",
         explanation: "Email nói 'We appreciate that so many people took the time to provide us with feedback' và 'dissatisfaction with a significant proportion of the customers who responded'. Điều này cho thấy đã có nhiều khách hàng tham gia khảo sát.",
@@ -1034,6 +1138,7 @@ const explanationsData = {
     186: {
         question: "Why was the first e-mail sent?",
         options: { A: 'To ask for customer feedback', B: 'To seek a solution to a problem', C: 'To request a refund on an item', D: 'To cancel an order for tableware' },
+        options_vn: { A: 'Để hỏi ý kiến phản hồi của khách hàng', B: 'Để tìm giải pháp cho một vấn đề', C: 'Để yêu cầu hoàn tiền cho một mặt hàng', D: 'Để hủy đơn hàng bộ đồ ăn' },
         answer: 'B',
         type: "Đọc hiểu mục đích chính",
         explanation: "Bà Jacques viết email để báo cáo về các sai sót trong đơn hàng của mình (nhận thiếu đĩa, cốc bị vỡ) và hỏi 'How soon can you fix my order?'. Mục đích là để tìm kiếm một giải pháp cho vấn đề.",
@@ -1042,6 +1147,7 @@ const explanationsData = {
     187: {
         question: "What item was received damaged?",
         options: { A: '14L', B: '17P', C: '18S', D: '21G' },
+        options_vn: { A: 'Khăn trải bàn', B: 'Đĩa ăn tối', C: 'Đĩa phục vụ', D: 'Cốc nước' },
         answer: 'D',
         type: "Đối chiếu thông tin",
         explanation: "Email của bà Jacques nói rằng 'seven water goblets arrived with cracks'. Đối chiếu với hóa đơn, 'water goblets' là mã hàng 21G.",
@@ -1050,6 +1156,7 @@ const explanationsData = {
     188: {
         question: "In the second e-mail, the word 'extend' in paragraph 1, line 1, is closest in meaning to",
         options: { A: 'offer', B: 'delay', C: 'continue', D: 'increase' },
+        options_vn: { A: 'đưa ra, gửi đến', B: 'trì hoãn', C: 'tiếp tục', D: 'tăng' },
         answer: 'A',
         type: "Từ vựng (Vocabulary)",
         explanation: "Cụm từ 'extend my apology' có nghĩa là 'gửi lời xin lỗi của tôi'. Trong ngữ cảnh này, 'extend' gần nghĩa nhất với 'offer' (đưa ra, gửi đến).",
@@ -1058,6 +1165,7 @@ const explanationsData = {
     189: {
         question: "What is NOT indicated about McGivern Wholesale?",
         options: { A: 'It does business with restaurants.', B: 'It is changing the location of a facility.', C: 'It has been operating for five years.', D: 'It is revising its price list.' },
+        options_vn: { A: 'Nó kinh doanh với các nhà hàng.', B: 'Nó đang thay đổi địa điểm của một cơ sở.', C: 'Nó đã hoạt động được năm năm.', D: 'Nó đang sửa đổi bảng giá của mình.' },
         answer: 'D',
         type: "Đọc hiểu chi tiết (Loại trừ)",
         explanation: "Thông tin (A) được đề cập qua khách hàng Salek's Café. (B) được đề cập trong email thứ hai ('moving to a new warehouse'). (C) được đề cập trong email đầu tiên ('since you opened five years ago'). Không có thông tin nào về việc họ đang sửa đổi bảng giá.",
@@ -1066,6 +1174,7 @@ const explanationsData = {
     190: {
         question: "What will McGivern Wholesale give to Ms. Jacques?",
         options: { A: 'A rebate on shipping charges', B: 'An extra package of table linens', C: 'A reduced price on her next order', D: 'An updated invoice' },
+        options_vn: { A: 'Một khoản giảm giá phí vận chuyển', B: 'Một gói khăn trải bàn thêm', C: 'Một mức giá giảm cho đơn hàng tiếp theo của cô ấy', D: 'Một hóa đơn cập nhật' },
         answer: 'C',
         type: "Đọc hiểu chi tiết",
         explanation: "Email thứ hai của ông McGivern nói: 'I hope you will accept a 15 percent discount on your next shipment'. Điều này có nghĩa là một mức giá giảm cho đơn hàng tiếp theo của bà.",
@@ -1074,6 +1183,7 @@ const explanationsData = {
     191: {
         question: "On April 10, what work does Ms. Choi want Mr. Nunez to do for her?",
         options: { A: 'Deliver furniture', B: 'Install tiles', C: 'Clean the living room carpets', D: 'Paint the dining room walls' },
+        options_vn: { A: 'Giao đồ nội thất', B: 'Lắp đặt gạch', C: 'Làm sạch thảm phòng khách', D: 'Sơn tường phòng ăn' },
         answer: 'B',
         type: "Đối chiếu thông tin",
         explanation: "Email của bà Choi đề cập đến 'the job in my dining room' và bản ước tính chi phí liệt kê công việc liên quan đến 'Unglazed ceramic floor tiles' (gạch lát sàn) và vữa. Do đó, công việc là lắp đặt gạch.",
@@ -1082,6 +1192,7 @@ const explanationsData = {
     192: {
         question: "What will happen after April 15?",
         options: { A: "Ms. Choi's application will be reviewed.", B: 'Ms. Choi will receive a final bill.', C: 'The new city ordinance will go into effect.', D: 'The cost estimate will become invalid.' },
+        options_vn: { A: 'Đơn của bà Choi sẽ được xem xét.', B: 'Bà Choi sẽ nhận được hóa đơn cuối cùng.', C: 'Pháp lệnh thành phố mới sẽ có hiệu lực.', D: 'Ước tính chi phí sẽ không còn hợp lệ.' },
         answer: 'D',
         type: "Đối chiếu thông tin",
         explanation: "Bản ước tính chi phí được lập vào ngày 15 tháng 3 và có ghi 'All estimates are valid for one month'. Do đó, sau ngày 15 tháng 4, ước tính này sẽ không còn hợp lệ.",
@@ -1090,6 +1201,7 @@ const explanationsData = {
     193: {
         question: "How much will likely be added to Ms. Choi's estimate?",
         options: { A: '$32.99', B: '$35.00', C: '$100.00', D: '$300.00' },
+        options_vn: { A: '$32.99', B: '$35.00', C: '$100.00', D: '$300.00' },
         answer: 'C',
         type: "Đối chiếu thông tin",
         explanation: "Email của bà Choi hỏi về phí giấy phép xây dựng. Pháp lệnh thành phố quy định phí này là '$100 for residential buildings' (100 đô la cho các tòa nhà dân cư). Công việc trong phòng ăn của bà là dự án dân cư.",
@@ -1098,6 +1210,7 @@ const explanationsData = {
     194: {
         question: "In the e-mail, the word 'contract' in paragraph 1, line 1, is closest in meaning to",
         options: { A: 'reduce', B: 'retain', C: 'collect', D: 'purchase' },
+        options_vn: { A: 'giảm', B: 'thuê', C: 'thu thập', D: 'mua' },
         answer: 'B',
         type: "Từ vựng (Vocabulary)",
         explanation: "Trong ngữ cảnh 'I'd like to contract you for', 'contract' được dùng như một động từ có nghĩa là 'thuê, ký hợp đồng với'. 'Retain' (giữ lại, thuê) là từ có nghĩa gần nhất.",
@@ -1106,6 +1219,7 @@ const explanationsData = {
     195: {
         question: "What does Ms. Choi indicate about Reddford Construction?",
         options: { A: 'She has hired them for a job before.', B: 'She needs to reschedule an appointment with them.', C: 'She thinks that their prices are too high.', D: 'She believes that they bought too many tiles.' },
+        options_vn: { A: 'Cô ấy đã thuê họ cho một công việc trước đây.', B: 'Cô ấy cần lên lịch lại cuộc hẹn với họ.', C: 'Cô ấy nghĩ rằng giá của họ quá cao.', D: 'Cô ấy tin rằng họ đã mua quá nhiều gạch.' },
         answer: 'A',
         type: "Đọc hiểu chi tiết",
         explanation: "Bà Choi viết: 'I really liked the job you did installing carpeting and painting in my living room last year...'. Điều này cho thấy bà đã từng thuê họ làm việc trước đây.",
@@ -1114,6 +1228,7 @@ const explanationsData = {
     196: {
         question: "What is the purpose of the article?",
         options: { A: 'To provide an update on a local project', B: 'To discuss state-of-the-art warehouse equipment', C: 'To report on local businesses that plan to hire more workers', D: 'To explain difficulties encountered on a construction project' },
+        options_vn: { A: 'Để cung cấp thông tin cập nhật về một dự án địa phương', B: 'Để thảo luận về thiết bị nhà kho hiện đại', C: 'Để báo cáo về các doanh nghiệp địa phương có kế hoạch thuê thêm công nhân', D: 'Để giải thích những khó khăn gặp phải trong một dự án xây dựng' },
         answer: 'A',
         type: "Đọc hiểu mục đích chính",
         explanation: "Bài báo nói về việc mở một trung tâm phân phối mới, các vấn đề đã được giải quyết và thời gian dự kiến hoạt động. Đây là một bản cập nhật về một dự án tại địa phương.",
@@ -1122,6 +1237,7 @@ const explanationsData = {
     197: {
         question: "In the article, the word 'scope' in paragraph 2, line 4, is closest in meaning to",
         options: { A: 'instrument used for viewing', B: 'evaluation', C: 'time of completion', D: 'extent' },
+        options_vn: { A: 'dụng cụ dùng để xem', B: 'sự đánh giá', C: 'thời gian hoàn thành', D: 'phạm vi, quy mô' },
         answer: 'D',
         type: "Từ vựng (Vocabulary)",
         explanation: "'Scope' trong cụm 'size and scope of the project' có nghĩa là 'phạm vi, quy mô'. 'Extent' (mức độ, phạm vi) là từ đồng nghĩa gần nhất.",
@@ -1130,6 +1246,7 @@ const explanationsData = {
     198: {
         question: "What is most likely true about the Cardiff distribution center?",
         options: { A: 'It had a problem with food storage.', B: 'Its grand opening was successful.', C: 'Mr. Simler was recently hired there.', D: 'Ms. Baral was unhappy with its service.' },
+        options_vn: { A: 'Nó có vấn đề với việc lưu trữ thực phẩm.', B: 'Lễ khai trương của nó đã thành công.', C: 'Ông Simler mới được thuê ở đó.', D: 'Bà Baral không hài lòng với dịch vụ của nó.' },
         answer: 'B',
         type: "Suy luận",
         explanation: "Trong email, bà Baral nói về lễ khai trương (grand opening): 'I do not believe I have ever seen such a well-planned event'. Điều này cho thấy sự kiện đã rất thành công.",
@@ -1138,6 +1255,7 @@ const explanationsData = {
     199: {
         question: "What company was chosen by Mr. Simler?",
         options: { A: "The company that Ms. Baral's contact works for", B: "The company with the most reliable customer-service representatives", C: "The company that has lower rates than a competitor", D: "The company with an overnight call center" },
+        options_vn: { A: 'Công ty mà người liên hệ của bà Baral làm việc', B: 'Công ty có đại diện dịch vụ khách hàng đáng tin cậy nhất', C: 'Công ty có mức giá thấp hơn đối thủ cạnh tranh', D: 'Công ty có trung tâm cuộc gọi qua đêm' },
         answer: 'C',
         type: "Đối chiếu thông tin",
         explanation: "Tin nhắn văn bản được gửi từ 'Raven Notifications'. Trong email, bà Baral đã đề cập đến Raven Notifications là công ty có 'rates are lower' (giá thấp hơn). Điều này cho thấy ông Simler đã chọn công ty này.",
@@ -1146,6 +1264,7 @@ const explanationsData = {
     200: {
         question: "What does the text message ask employees who want additional work to do?",
         options: { A: 'Arrive on Tuesday night', B: 'Contact the personnel office', C: 'Reply to the message with the hours they can work', D: 'Go to a different distribution center' },
+        options_vn: { A: 'Đến vào tối thứ Ba', B: 'Liên hệ với văn phòng nhân sự', C: 'Trả lời tin nhắn với số giờ họ có thể làm việc', D: 'Đến một trung tâm phân phối khác' },
         answer: 'B',
         type: "Đọc hiểu chi tiết",
         explanation: "Tin nhắn yêu cầu: 'If you are interested in working additional hours at that time, please contact Becca Johnston in Human Resources'. Human Resources chính là văn phòng nhân sự (personnel office).",
@@ -1732,22 +1851,27 @@ function generateExplanations() {
             expBlock.className = 'bg-white shadow-md rounded-lg p-6 mb-6';
             expBlock.id = `exp-${i}`;
 
-            // --- PHẦN THÊM MỚI ĐỂ HIỂN THỊ OPTIONS ---
+            // --- PHẦN ĐƯỢC CẬP NHẬT ĐỂ HIỂN THỊ OPTIONS_VN ---
             let optionsHtml = '';
             const options = explanationData.options;
+            const options_vn = explanationData.options_vn; // Lấy thêm dữ liệu dịch đáp án
+
             if (options) {
                 optionsHtml = '<div class="space-y-2 mt-4 text-gray-800">';
                 for (const key in options) {
+                    // Tạo chuỗi dịch, nếu có thì thêm vào
+                    const vn_text = (options_vn && options_vn[key]) ? ` <span class="text-gray-500 italic">  (${options_vn[key]})</span>` : '';
+
                     // Kiểm tra và làm nổi bật đáp án đúng
                     if (key === explanationData.answer) {
-                        optionsHtml += `<p class="font-semibold text-green-700 bg-green-100 p-2 rounded-md"><strong>${key}. ${options[key]} (Đáp án đúng)</strong></p>`;
+                        optionsHtml += `<p class="font-semibold text-green-700 bg-green-100 p-2 rounded-md"><strong>${key}. ${options[key]}</strong>${vn_text} <span class="font-bold">(Đáp án đúng)</span></p>`;
                     } else {
-                        optionsHtml += `<p class="p-2">${key}. ${options[key]}</p>`;
+                        optionsHtml += `<p class="p-2">${key}. ${options[key]}${vn_text}</p>`;
                     }
                 }
                 optionsHtml += '</div>';
             }
-            // --- KẾT THÚC PHẦN THÊM MỚI ---
+            // --- KẾT THÚC PHẦN CẬP NHẬT ---
 
             expBlock.innerHTML = `
                 <p class="text-lg font-semibold text-blue-600 mb-2">Câu ${i}: ${explanationData.question || ''}</p>
