@@ -48,7 +48,6 @@
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -70,10 +69,24 @@
             text-align: center;
             transform: scale(0.9);
             transition: transform 0.3s;
+            /* Added shadow as requested */
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
         .modal-overlay.visible .modal-content {
             transform: scale(1);
         }
+        /* Auth Modals Styling Change */
+        #auth-container.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        /* Removed specific green/red overlays, added generic blurred background */
+        #login-modal, #register-modal {
+             background-color: rgba(10, 10, 10, 0.6);
+             backdrop-filter: blur(4px);
+             -webkit-backdrop-filter: blur(4px);
+        }
+
         audio {
             width: 100%;
             margin-top: 1rem;
@@ -133,17 +146,41 @@
 </head>
 <body class="text-gray-800">
 
-    <div id="start-test-modal" class="modal-overlay visible">
+    <div id="auth-container">
+        <div id="login-modal" class="modal-overlay">
+            <div class="modal-content">
+                <h3 class="text-2xl font-bold mb-4">Đăng Nhập</h3>
+                <p class="mb-4 text-gray-600">Vui lòng đăng nhập để bắt đầu bài thi.</p>
+                <div id="login-error" class="text-red-500 text-sm mb-4 hidden"></div>
+                <input type="text" id="login-username" placeholder="Tên đăng nhập..." class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                <input type="password" id="login-password" placeholder="Mật khẩu..." class="w-full p-2 border border-gray-300 rounded-md mb-6 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                <button id="login-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg transition-transform transform hover:scale-105 w-full mb-4">Đăng Nhập</button>
+                <p class="text-sm">Chưa có tài khoản? <a href="#" id="show-register" class="text-blue-600 hover:underline">Đăng ký ngay</a></p>
+            </div>
+        </div>
+
+        <div id="register-modal" class="modal-overlay">
+            <div class="modal-content">
+                <h3 class="text-2xl font-bold mb-4">Đăng Ký</h3>
+                <p class="mb-4 text-gray-600">Tạo tài khoản mới để tham gia.</p>
+                <div id="register-error" class="text-red-500 text-sm mb-4 hidden"></div>
+                <input type="text" id="register-username" placeholder="Tên đăng nhập..." class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
+                <input type="password" id="register-password" placeholder="Mật khẩu..." class="w-full p-2 border border-gray-300 rounded-md mb-6 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
+                <button id="register-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-8 rounded-lg transition-transform transform hover:scale-105 w-full mb-4">Đăng Ký</button>
+                <p class="text-sm">Đã có tài khoản? <a href="#" id="show-login" class="text-red-600 hover:underline">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="ready-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3 class="text-2xl font-bold mb-4">Thông Tin Thí Sinh</h3>
-            <p class="mb-4">Vui lòng nhập họ và tên của bạn để bắt đầu bài thi.</p>
-            <input type="text" id="student-name-input" placeholder="Nhập họ và tên..." class="w-full p-2 border border-gray-300 rounded-md mb-6 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
-            <p class="mb-6 text-sm text-gray-600">Bạn đã sẵn sàng làm bài thi chưa? Ấn "Bắt đầu" để vào bài thi, audio sẽ tự động chạy và thời gian sẽ bắt đầu đếm ngược.</p>
+            <h3 class="text-2xl font-bold mb-4">Sẵn Sàng Bắt Đầu?</h3>
+            <p class="mb-6 text-gray-600">Khi bạn nhấn "Bắt đầu", thời gian sẽ bắt đầu đếm ngược và audio sẽ tự động phát.</p>
             <button id="start-test-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg transition-transform transform hover:scale-105">Bắt đầu</button>
         </div>
     </div>
 
-    <div id="main-test-wrapper" style="display: none;">
+    <div id="main-test-wrapper">
         <div class="sticky top-0 z-50 bg-white shadow-md">
             <div class="container mx-auto p-4 max-w-7xl flex justify-between items-center">
                 <div class="flex items-center space-x-3">
@@ -152,9 +189,15 @@
                         <span class="text-blue-600">TOEIC</span><span class="text-red-600"> ONE</span>
                     </div>
                 </div>
-                <div id="timer-component" class="text-right">
-                    <h2 class="text-md font-semibold text-gray-700">Thời gian còn lại</h2>
-                    <div id="timer" class="text-2xl font-bold text-red-600">120:00</div>
+                <div class="flex items-center space-x-4">
+                    <div id="user-display" class="flex items-center space-x-2 hidden">
+                        <span id="user-name-display" class="font-semibold text-gray-700"></span>
+                        <button id="logout-btn" class="text-sm text-red-600 hover:underline">(Đăng xuất)</button>
+                    </div>
+                    <div id="timer-component" class="text-right">
+                        <h2 class="text-md font-semibold text-gray-700">Thời gian còn lại</h2>
+                        <div id="timer" class="text-2xl font-bold text-red-600">120:00</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -560,24 +603,116 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     let allQuestionElementsOrder = [];
     let testTakerName = '';
 
-
-    const modal = document.getElementById('confirmation-modal');
+    // --- DOM Elements ---
+    const confirmationModal = document.getElementById('confirmation-modal');
     const modalText = document.getElementById('modal-text');
     const confirmBtn = document.getElementById('modal-confirm-btn');
     const cancelBtn = document.getElementById('modal-cancel-btn');
+    
+    const authContainer = document.getElementById('auth-container');
+    const loginModal = document.getElementById('login-modal');
+    const registerModal = document.getElementById('register-modal');
+    const readyModal = document.getElementById('ready-modal');
+    
+    const mainTestWrapper = document.getElementById('main-test-wrapper');
+    const userDisplay = document.getElementById('user-display');
+    const userNameDisplay = document.getElementById('user-name-display');
 
-    function showModal(text) {
+    // --- Modal Functions ---
+    function showModal(modalElement) {
+        if(modalElement) modalElement.classList.add('visible');
+    }
+
+    function hideModal(modalElement) {
+        if(modalElement) modalElement.classList.remove('visible');
+    }
+
+    function showConfirmationModal(text) {
         modalText.textContent = text;
-        modal.classList.add('visible');
+        showModal(confirmationModal);
     }
 
-    function hideModal() {
-        modal.classList.remove('visible');
+    // --- Auth Functions ---
+    function handleRegister(e) {
+        e.preventDefault();
+        const username = document.getElementById('register-username').value.trim();
+        const password = document.getElementById('register-password').value.trim();
+        const errorDiv = document.getElementById('register-error');
+
+        if (!username || !password) {
+            errorDiv.textContent = 'Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.';
+            errorDiv.classList.remove('hidden');
+            return;
+        }
+
+        let users = JSON.parse(localStorage.getItem('toeicUsers')) || [];
+        if (users.find(user => user.username === username)) {
+            errorDiv.textContent = 'Tên đăng nhập đã tồn tại.';
+            errorDiv.classList.remove('hidden');
+            return;
+        }
+
+        users.push({ username, password });
+        localStorage.setItem('toeicUsers', JSON.stringify(users));
+        
+        alert('Đăng ký thành công! Vui lòng đăng nhập.');
+        hideModal(registerModal);
+        showModal(loginModal);
+        errorDiv.classList.add('hidden');
+        document.getElementById('register-username').value = '';
+        document.getElementById('register-password').value = '';
     }
 
-    cancelBtn.addEventListener('click', hideModal);
+    function handleLogin(e) {
+        e.preventDefault();
+        const username = document.getElementById('login-username').value.trim();
+        const password = document.getElementById('login-password').value.trim();
+        const errorDiv = document.getElementById('login-error');
+
+        if (!username || !password) {
+            errorDiv.textContent = 'Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.';
+            errorDiv.classList.remove('hidden');
+            return;
+        }
+
+        let users = JSON.parse(localStorage.getItem('toeicUsers')) || [];
+        const user = users.find(u => u.username === username && u.password === password);
+
+        if (user) {
+            localStorage.setItem('currentUser', username);
+            testTakerName = username;
+            hideModal(loginModal);
+            showModal(readyModal);
+            errorDiv.classList.add('hidden');
+        } else {
+            errorDiv.textContent = 'Tên đăng nhập hoặc mật khẩu không đúng.';
+            errorDiv.classList.remove('hidden');
+        }
+    }
+    
+    function handleLogout() {
+        localStorage.removeItem('currentUser');
+        window.location.reload();
+    }
+
+    function checkAuth() {
+        const currentUser = localStorage.getItem('currentUser');
+        if (currentUser) {
+            testTakerName = currentUser;
+            hideModal(authContainer); // Hide the whole auth container
+            hideModal(loginModal);
+            mainTestWrapper.style.display = 'block'; // Ensure test is visible
+            showModal(readyModal);
+        } else {
+            mainTestWrapper.style.display = 'block'; // Show test wrapper for background effect
+            showModal(loginModal);
+        }
+    }
+
+    // --- Test Logic ---
+    cancelBtn.addEventListener('click', () => hideModal(confirmationModal));
     confirmBtn.addEventListener('click', () => {
-        hideModal();
+        hideModal(confirmationModal);
         gradeTest();
     });
 
@@ -690,7 +825,7 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             qBlock.appendChild(imgWrapper);
             qBlock.appendChild(contentWrapper);
         } else {
-             qBlock.appendChild(contentWrapper);
+           qBlock.appendChild(contentWrapper);
         }
 
         const qHeader = document.createElement('div');
@@ -810,7 +945,7 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
                 currentElement.classList.add('hidden');
                 nextElement.classList.remove('hidden');
                 nextElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 1000);
+            }, 2500); // Changed to 2.5 seconds
         }
     }
 
@@ -903,6 +1038,12 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
         if (submissionInProgress) return;
         submissionInProgress = true;
         clearInterval(timerInterval);
+        
+        // Pause audio on submission
+        const audioPlayer = document.getElementById('audio-player');
+        if (audioPlayer) {
+            audioPlayer.pause();
+        }
 
         const results = {};
         let allQuestions = [];
@@ -955,8 +1096,8 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
             const scoreDisplay = document.querySelector(`#${partName} .part-score-display`);
             if(scoreDisplay) {
                  scoreDisplay.innerHTML = `<div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6 rounded-r-lg">
-                     <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
-                    </div>`;
+                                       <p class="font-bold">Kết quả ${partName.replace('part', 'Part ')}: ${results[partName].correct} / ${results[partName].total} câu đúng</p>
+                                     </div>`;
             }
         }
         
@@ -996,36 +1137,53 @@ To Gold Kettle Employees—The frozen-goods shipment scheduled to arrive on Tues
     function handleSubmit() {
         const unansweredCount = totalQuestions - Object.keys(userAnswers).length;
         if (unansweredCount === totalQuestions) {
-            showModal('Bạn chưa trả lời câu nào. Bạn có chắc chắn muốn nộp bài và nhận 0 điểm không?');
+            showConfirmationModal('Bạn chưa trả lời câu nào. Bạn có chắc chắn muốn nộp bài và nhận 0 điểm không?');
         } else if (unansweredCount > 0) {
-            showModal(`Bạn còn ${unansweredCount} câu chưa trả lời. Bạn có chắc chắn muốn nộp bài không?`);
+            showConfirmationModal(`Bạn còn ${unansweredCount} câu chưa trả lời. Bạn có chắc chắn muốn nộp bài không?`);
         } else {
-            showModal(`Bạn đã hoàn thành tất cả các câu hỏi. Bạn có muốn nộp bài không?`);
+            showConfirmationModal(`Bạn đã hoàn thành tất cả các câu hỏi. Bạn có muốn nộp bài không?`);
         }
     }
 
+    // --- Event Listeners ---
     document.getElementById('submit-btn').addEventListener('click', handleSubmit);
+    
+    // Auth Listeners
+    document.getElementById('show-register').addEventListener('click', (e) => {
+        e.preventDefault();
+        hideModal(loginModal);
+        showModal(registerModal);
+    });
+
+    document.getElementById('show-login').addEventListener('click', (e) => {
+        e.preventDefault();
+        hideModal(registerModal);
+        showModal(loginModal);
+    });
+
+    document.getElementById('register-btn').addEventListener('click', handleRegister);
+    document.getElementById('login-btn').addEventListener('click', handleLogin);
+    document.getElementById('logout-btn').addEventListener('click', handleLogout);
 
     document.getElementById('start-test-btn').addEventListener('click', () => {
-        const nameInput = document.getElementById('student-name-input');
-        testTakerName = nameInput.value.trim();
-
-        if (testTakerName === "") {
-            alert("Vui lòng nhập họ và tên của bạn.");
-            return;
-        }
-
-        document.getElementById('start-test-modal').style.display = 'none';
-        document.getElementById('main-test-wrapper').style.display = 'block';
+        hideModal(readyModal);
+        mainTestWrapper.style.display = 'block';
+        userNameDisplay.textContent = testTakerName;
+        userDisplay.classList.remove('hidden');
 
         startTimer();
         document.getElementById('audio-player').play().catch(e => {
             console.error("Audio autoplay was prevented.", e);
+            alert("Trình duyệt đã chặn tự động phát âm thanh. Vui lòng nhấn nút Play trên thanh audio để bắt đầu nghe.");
         });
     });
 
+    // --- Initial Load ---
     window.onload = () => {
         generateQuiz();
+        // Hide the main test wrapper initially until auth is decided
+        mainTestWrapper.style.display = 'none';
+        checkAuth();
     };
     </script>
 </body>
